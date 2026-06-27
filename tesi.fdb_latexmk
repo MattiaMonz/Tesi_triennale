@@ -1,18 +1,18 @@
 # Fdb version 4
-["biber tesi"] 1782424924.45653 "tesi.bcf" "tesi.bbl" "tesi" 1782510984.10579 0
+["biber tesi"] 1782424924.45653 "tesi.bcf" "tesi.bbl" "tesi" 1782581544.60458 0
   "biblio.bib" 1782420014.72209 1186 dd6f4f1ecd6e70414e83023283eeb57d ""
-  "tesi.bcf" 1782510983.82774 108333 850a86c1b5090a32db7ee58acb6220db "pdflatex"
+  "tesi.bcf" 1782581544.3319 108333 850a86c1b5090a32db7ee58acb6220db "pdflatex"
   (generated)
   "tesi.bbl"
   "tesi.blg"
   (rewritten before read)
-["makeindex tesi.idx"] 1782495413.47376 "tesi.idx" "tesi.ind" "tesi" 1782510984.10564 0
-  "tesi.idx" 1782510980.46953 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+["makeindex tesi.idx"] 1782495413.47376 "tesi.idx" "tesi.ind" "tesi" 1782581544.60444 0
+  "tesi.idx" 1782581541.12122 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
   (generated)
   "tesi.ilg"
   "tesi.ind"
   (rewritten before read)
-["pdflatex"] 1782510978.63205 "/Users/mattia/Desktop/InformaticaLab_git/LabInfo_2023_24/tesi_Monzani/tesi.tex" "tesi.pdf" "tesi" 1782510984.10622 0
+["pdflatex"] 1782581539.2088 "/Users/mattia/Desktop/InformaticaLab_git/LabInfo_2023_24/tesi_Monzani/tesi.tex" "tesi.pdf" "tesi" 1782581544.60503 0
   "/Users/mattia/Desktop/InformaticaLab_git/LabInfo_2023_24/tesi_Monzani/tesi.tex" 1782505517.03268 3648 aeeb84208222e7cc34065cbd2f800d0f ""
   "/usr/local/texlive/2026/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc" 1254269338 2375 baa924870cfb487815765f9094cf3728 ""
   "/usr/local/texlive/2026/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc" 1202520719 3486 c7eadf5dcc57b3b2d11736679f6636ba ""
@@ -320,7 +320,7 @@
   "/usr/local/texlive/2026/texmf.cnf" 1774209515 577 648cd9f92f9c0eac486f4c71c85cfbbe ""
   "chapters/00_introduzione.tex" 1782420016.52646 496 262f8a1a6b74c70dca7a64c4c8c11dd4 ""
   "chapters/01_cap.tex" 1782424913.14587 38761 4eeb1feb73a2601f2744755c1ce616b7 ""
-  "chapters/02_cap.tex" 1782510978.27708 16997 f96f21396bf9406b9759a052820033d3 ""
+  "chapters/02_cap.tex" 1782581538.78578 17010 55f8251233f0855536204876eb312783 ""
   "chapters/03_cap.tex" 1782419832.07823 0 d41d8cd98f00b204e9800998ecf8427e ""
   "chapters/04_cap.tex" 1782419839.45985 0 d41d8cd98f00b204e9800998ecf8427e ""
   "chapters/99_conclusioni.tex" 1782419859.80384 0 d41d8cd98f00b204e9800998ecf8427e ""
@@ -345,13 +345,13 @@
   "figures/metodi_DM.png" 1782419739.43665 90902 d479afb21484ef51dd99d6195e5e27d6 ""
   "figures/planck_int_cmb_0.png" 1782419741.92772 466507 94fd4cb2d993ab6a31fe85d23711da5a ""
   "figures/scheme.png" 1782419745.95846 44956 6299af4d78678f66f7f622ffd8c6966a ""
-  "tesi.aux" 1782510983.82041 21512 fa26597978d66b71b11f52f9b013142a "pdflatex"
+  "tesi.aux" 1782581544.32453 21512 fa26597978d66b71b11f52f9b013142a "pdflatex"
   "tesi.bbl" 1782424928.3235 5675 2f5aba00e9a2306f8084d5eba044f23f "biber tesi"
   "tesi.ind" 1782495413.63694 0 d41d8cd98f00b204e9800998ecf8427e "makeindex tesi.idx"
-  "tesi.out" 1782510983.82633 4975 30cd5084643d3826b1ac74507b6e2397 "pdflatex"
-  "tesi.run.xml" 1782510983.82885 2301 1ae0e305041178ee5a22a3e3d9ec84c4 "pdflatex"
+  "tesi.out" 1782581544.33044 4975 30cd5084643d3826b1ac74507b6e2397 "pdflatex"
+  "tesi.run.xml" 1782581544.33305 2301 1ae0e305041178ee5a22a3e3d9ec84c4 "pdflatex"
   "tesi.tex" 1782505517.03268 3648 aeeb84208222e7cc34065cbd2f800d0f ""
-  "tesi.toc" 1782510983.82895 2492 ba32a9c434102688f8260240db950a77 "pdflatex"
+  "tesi.toc" 1782581544.33315 2492 ba32a9c434102688f8260240db950a77 "pdflatex"
   (generated)
   "tesi.aux"
   "tesi.bcf"
