@@ -1,0 +1,154 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global/global}
+    \entry{chandra_bullet_2006}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=3ebe1947ae75f75af83450da7e92ebc1}{%
+           family={{Chandra X-ray Observatory}},
+           familyi={C\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {Harvard-Smithsonian Center for Astrophysics}%
+      }
+      \strng{namehash}{3ebe1947ae75f75af83450da7e92ebc1}
+      \strng{fullhash}{3ebe1947ae75f75af83450da7e92ebc1}
+      \strng{fullhashraw}{3ebe1947ae75f75af83450da7e92ebc1}
+      \strng{bibnamehash}{3ebe1947ae75f75af83450da7e92ebc1}
+      \strng{authorbibnamehash}{3ebe1947ae75f75af83450da7e92ebc1}
+      \strng{authornamehash}{3ebe1947ae75f75af83450da7e92ebc1}
+      \strng{authorfullhash}{3ebe1947ae75f75af83450da7e92ebc1}
+      \strng{authorfullhashraw}{3ebe1947ae75f75af83450da7e92ebc1}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{8}
+      \field{title}{1E 0657-56: {NASA} Finds Direct Proof of Dark Matter (More Information)}
+      \field{urlday}{24}
+      \field{urlmonth}{6}
+      \field{urlyear}{2026}
+      \field{year}{2006}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://chandra.harvard.edu/photo/2006/1e0657/more.html
+      \endverb
+      \verb{url}
+      \verb https://chandra.harvard.edu/photo/2006/1e0657/more.html
+      \endverb
+    \endentry
+    \entry{Planck2018Overview}{article}{}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{3}{}{%
+        {{hash=2200c6700aaddecd6aea88dedad48756}{%
+           family={{Planck Collaboration}},
+           familyi={P\bibinitperiod}}}%
+        {{hash=d91642f8860c0fba4e2de1e05b45c449}{%
+           family={Akrami},
+           familyi={A\bibinitperiod},
+           given={Y.},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=7137e8418d9673d0706e88fba2b843b3}{%
+           family={Ashdown},
+           familyi={A\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{687eab69c4facea31830f46167f9b676}
+      \strng{fullhash}{687eab69c4facea31830f46167f9b676}
+      \strng{fullhashraw}{687eab69c4facea31830f46167f9b676}
+      \strng{bibnamehash}{687eab69c4facea31830f46167f9b676}
+      \strng{authorbibnamehash}{687eab69c4facea31830f46167f9b676}
+      \strng{authornamehash}{687eab69c4facea31830f46167f9b676}
+      \strng{authorfullhash}{687eab69c4facea31830f46167f9b676}
+      \strng{authorfullhashraw}{687eab69c4facea31830f46167f9b676}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Astronomy \& Astrophysics}
+      \field{title}{{Planck} 2018 results. {I}. {Overview} and the cosmological legacy of {Planck}}
+      \field{volume}{641}
+      \field{year}{2020}
+      \field{pages}{A1}
+      \range{pages}{-1}
+      \verb{doi}
+      \verb 10.1051/0004-6361/201833880
+      \endverb
+    \endentry
+    \entry{Billard2022DirectDM}{article}{}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{5}{}{%
+        {{hash=e62228a2be51f089f7e29bbc451371ea}{%
+           family={Billard},
+           familyi={B\bibinitperiod},
+           given={J.},
+           giveni={J\bibinitperiod}}}%
+        {{hash=06297288e815e535c9814390126eda88}{%
+           family={Boulay},
+           familyi={B\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod}}}%
+        {{hash=31cba01101558d71ec77266e75028800}{%
+           family={Cebrián},
+           familyi={C\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod}}}%
+        {{hash=5e341b939fe5fb855732741f023efe2d}{%
+           family={Schumann},
+           familyi={S\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod}}}%
+        {{hash=a1261dab591e517a835e253e30b3afc3}{%
+           family={Marchetti},
+           familyi={M\bibinitperiod},
+           given={L.},
+           giveni={L\bibinitperiod}}}%
+      }
+      \strng{namehash}{6f452f11642b81f3566503fbe3e71cca}
+      \strng{fullhash}{bf1a869a4f68e0172d472242401cc299}
+      \strng{fullhashraw}{bf1a869a4f68e0172d472242401cc299}
+      \strng{bibnamehash}{6f452f11642b81f3566503fbe3e71cca}
+      \strng{authorbibnamehash}{6f452f11642b81f3566503fbe3e71cca}
+      \strng{authornamehash}{6f452f11642b81f3566503fbe3e71cca}
+      \strng{authorfullhash}{bf1a869a4f68e0172d472242401cc299}
+      \strng{authorfullhashraw}{bf1a869a4f68e0172d472242401cc299}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Reports on Progress in Physics}
+      \field{number}{5}
+      \field{title}{Direct dark matter searches: a {European} perspective}
+      \field{volume}{85}
+      \field{year}{2022}
+      \field{pages}{056201}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1088/1361-6633/ac5754
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
