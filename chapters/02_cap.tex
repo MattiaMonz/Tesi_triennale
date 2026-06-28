@@ -34,7 +34,7 @@ La straordinaria sensibilità energetica dell'esperimento CRESST, capace di regi
 
 Il TES è un termometro criogenico costituito da una sottile striscia di materiale superconduttore (tipicamente tungsteno) depositato direttamente sulla superficie del cristallo bersaglio e del rivelatore di luce. Il principio di funzionamento sfrutta l'estrema dipendenza della resistenza elettrica dalla temperatura nella stretta regione di transizione tra lo stato normale e lo stato superconduttore.
 
-Mantenendo il sistema a una temperatura di lavoro $T_0$ stabilizzata esattamente al centro di questa curva di transizione, il film presenta una resistenza parziale. Quando un fonone generato nel cristallo colpisce il TES, cede la sua energia causando un microscopico incremento di temperatura $\Delta T$. Poiché la curva della resistenza del TES è estremamente ripida in questa regione, anche un aumento di temperatura dell'ordine di pochi millikelvin provoca un cambiamento significativo della resistenza $\Delta R$ del sensore \ref{fig:tes_curve}.
+Mantenendo il sistema a una temperatura di lavoro $T_0$ stabilizzata esattamente al centro di questa curva di transizione, il TES presenta una resistenza parziale. Quando un fonone generato nel cristallo lo colpisce, cede la sua energia causando un microscopico incremento di temperatura $\Delta T$. Poiché la curva della resistenza del TES è estremamente ripida in questa regione, anche un aumento di temperatura dell'ordine di pochi millikelvin provoca un cambiamento significativo della resistenza $\Delta R$ del sensore, come illustrato in Figura \ref{fig:tes_curve}.
 \begin{figure}
     \centering
     \includegraphics[width=0.7\textwidth]{figures/curva_transizione.png}
@@ -46,11 +46,11 @@ Un secondo TES è posizionato sopra il light detector. Non potendo usare tubi fo
 \begin{figure}
     \centering
     \includegraphics[width=0.7\textwidth]{figures/Detector_simple.png}
-    \caption{Schema di un modulo rivelatore CRESST.}
+    \caption{Schema di un modulo rivelatore CRESST. Immagine tratta da \cite{cresst_detectors_2026}.}
     \label{fig:detector_module}
 \end{figure}
 
-Quando il cristallo viene colpito da una particella, il TES si scalda in tempi dell'ordine del millisecondo. Per poter registrare un evento successivo è necessario attendere che il sensore si raffreddi e torni alle condizioni di lavoro iniziali, un processo che avviene tipicamente in qualche decina di millisecondi (10-50~ms). Questo rapido ritorno all'equilibrio è garantito dal meccanismo di \textit{Negative Electro-Thermal Feedback} (ETF): all'aumentare della temperatura del TES, la sua resistenza elettrica subisce un brusco incremento che fa diminuire la corrente. Di conseguenza, la potenza dissipata per effetto Joule ($P = V^2/R$) si riduce, accelerando il raffreddamento del film superconduttore.
+Quando il cristallo viene colpito da una particella, il TES si scalda in tempi dell'ordine del millisecondo. Per poter registrare un evento successivo è necessario attendere che il sensore si raffreddi e torni alle condizioni di lavoro iniziali, un processo che avviene tipicamente in qualche decina di millisecondi (10-50~ms). Questo rapido ritorno all'equilibrio è possibile poiché all'aumentare della temperatura del TES, la sua resistenza elettrica subisce un brusco incremento che fa diminuire la corrente. Di conseguenza, la potenza dissipata per effetto Joule ($P = V^2/R$) si riduce, accelerandone il raffreddamento.
 
 \subsubsection{Lo SQUID}
 
@@ -66,7 +66,7 @@ Come illustrato nello schema di Figura~\ref{fig:squid_circuit}, il circuito di b
     \label{fig:squid_circuit}
 \end{figure}
 
-Lo SQUID converte questo infinitesimo flusso magnetico in una variazione di tensione elettrica ($\Delta V$) leggibile dall'elettronica a temperatura ambiente. Offrendo un guadagno eccezionale e un rumore intrinseco virtualmente nullo, questo sistema permette di preservare e digitalizzare l'informazione sul rilascio energetico originario anche per eventi estremamente deboli, inferiori al $\text{keV}$.
+Lo SQUID converte questo infinitesimo flusso magnetico in una variazione di tensione elettrica ($\Delta V$) misurabile dall'elettronica a temperatura ambiente. Offrendo un guadagno eccezionale e un rumore intrinseco virtualmente nullo, questo sistema permette di preservare e digitalizzare l'informazione sul rilascio energetico originario anche per eventi estremamente deboli, inferiori al $\text{keV}$.
 
 \subsection{Il sistema di refrigerazione: il criostato a diluizione}
 \label{subsec:criostato}
@@ -81,7 +81,7 @@ Per mantenere i moduli rivelatori, i TES e gli SQUID alla temperatura di lavoro 
     \item \textbf{Terzo stadio (Unità a diluizione a $\sim 10\text{ mK}$):} Per scendere sotto la barriera di $1\text{ K}$ è necessario sfruttare le proprietà termodinamiche della miscela di due isotopi stabili dell'elio: l'Elio-3 ($^3\text{He}$) e l'Elio-4 ($^4\text{He}$). Quando questa miscela viene raffreddata sotto gli $0.8\text{ K}$, essa subisce una separazione spontanea in due fasi distinte: una fase "ricca" di $^3\text{He}$ (più leggera, che galleggia sopra) e una fase "diluita" (costituita quasi interamente da $^4\text{He}$ superfluido, in cui è disciolta una piccola frazione di $^3\text{He}$). 
 \end{enumerate}
 
-Il raffreddamento finale avviene nella camera di miscelazione (\textit{mixing chamber}), il punto più freddo del criostato. Tramite un sistema di pompaggio, gli atomi di $^3\text{He}$ vengono forzati ad attraversare la linea di separazione, passando dalla fase ricca alla fase diluita. Questo processo è endotermico: l'attraversamento della barriera richiede energia, che viene sottratta direttamente dall'ambiente circostante sotto forma di calore. È proprio grazie a questo continuo passaggio di fase quantistico che il criostato riesce ad assorbire il calore residuo dei rivelatori e a stabilizzare stabilmente l'intero apparato sperimentale alla temperatura ultra-criogenica di $10\text{ mK}$. Poiché questo meccanismo di raffreddamento utilizza materiali non radiopuri (serbatoi per l'azoto e l'elio, valvole e saldature etc...), il criostato deve stare al di fuori del modulo rivelatore. La temperatura criogenica è trasmessa al modulo tramite un collegamento in rame ultrapuro, che funge da ponte termico tra il criostato e il rivelatore come mostrato in Figura \ref{fig:shielding}.
+Tramite un sistema di pompaggio, gli atomi di $^3\text{He}$ vengono forzati ad attraversare la linea di separazione, passando dalla fase ricca alla fase diluita. Questo processo è endotermico: l'attraversamento della barriera richiede energia, che viene sottratta direttamente dall'ambiente circostante sotto forma di calore. È proprio grazie a questo continuo passaggio di fase quantistico che il criostato riesce ad assorbire il calore residuo dei rivelatori e a stabilizzare stabilmente l'intero apparato sperimentale alla temperatura criogenica di $10\text{ mK}$. Poiché questo meccanismo di raffreddamento utilizza materiali non radiopuri (serbatoi per l'azoto e l'elio, valvole e saldature etc...), il criostato deve stare al di fuori del modulo rivelatore. La temperatura criogenica è trasmessa al modulo tramite un collegamento in rame ultrapuro, che funge da ponte termico tra il criostato e il rivelatore come mostrato in Figura \ref{fig:shielding}.
 
 \subsection{Discriminazione del fondo: il Light Yield}
 \label{sec:light_yield}
@@ -99,7 +99,7 @@ Nel caso specifico dei cristalli di $\text{CaWO}_4$ impiegati in CRESST, il targ
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.85\textwidth]{figures/Bands.JPG}
-    \caption{Rappresentazione schematica delle bande di evento nel piano Light Yield in funzione dell'energia per un cristallo di $\text{CaWO}_4$. Si distinguono nettamente la banda grigia superiore dei rinculi elettronici ($e^-/\gamma$) e le bande inferiori associate ai rinculi nucleari di alfa ($\alpha$), ossigeno (O) e tungsteno (W). La larghezza delle bande aumenta a basse energie a causa delle fluttuazioni statistiche nella raccolta dei fotoni.}
+    \caption{Rappresentazione schematica delle bande di evento nel piano Light Yield in funzione dell'energia per un cristallo di $\text{CaWO}_4$. Si distinguono nettamente la banda grigia superiore dei rinculi elettronici ($e^-/\gamma$) e le bande inferiori associate ai rinculi nucleari di alfa ($\alpha$), ossigeno (O) e tungsteno (W). La larghezza delle bande aumenta a basse energie a causa delle fluttuazioni statistiche nella raccolta dei fotoni. Immagine tratta da \cite{cresst_detectors_2026}.}
     \label{fig:bands}
 \end{figure}
 
@@ -110,15 +110,33 @@ Analizzando la Figura~\ref{fig:bands}, è possibile identificare le diverse comp
     \item \textbf{Bande dei rinculi nucleari (regioni verde e blu):} I nuclei di Ossigeno (O) e Tungsteno (W) mostrano un quenching progressivamente più marcato a causa della loro maggiore massa. Una WIMP di materia oscura, interagendo prevalentemente tramite scattering coerente con i nuclei del bersaglio (con una sezione d'urto che scala come $A^2$, favorendo il Tungsteno pesante), produrrebbe eventi confinati principalmente nella banda del Tungsteno (W) o dell'Ossigeno (O).
 \end{itemize}
 
-L'aspetto cruciale per l'analisi dei dati di CRESST risiede nel comportamento delle bande nella regione delle basse energie (prossime a $0\text{ keV}$). Come si nota dal grafico, al diminuire dell'energia la risoluzione statistica del canale luce diminuisce, provocando un allargamento di tutte le bande. Questo allargamento porta a una parziale sovrapposizione tra la banda del fondo elettronico e le bande dei rinculi nucleari. 
-
 \section{Scudi attivi e passivi}
 \label{sec:scudi}
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.7\textwidth]{figures/Schematic-cross-section-of-the-CRESST-setup-27-showing-the-structure-of-the-cryostat.ppm.png}
-    \caption{Schema del sistema di schermatura di CRESST. Lo strato esterno di piombo e rame riduce la radioattività ambientale, mentre lo scudo attivo di scintillatori plastici rileva i muoni cosmici residui.}
-    \label{fig:shielding}
-\end{figure}
 
-bella regaz
+L'apparato sperimentale di CRESST è protetto da un sistema di schermatura a più livelli, progettato per ridurre al minimo il fondo sperimentale e massimizzare la sensibilità alla materia oscura. Questo sistema si compone di due componenti principali: scudi passivi e scudi attivi.
+
+\begin{itemize}
+    \item \textbf{scudi passivi:} materiali ad alta densità come piombo e rame, che circondano il criostato e i moduli rivelatori, assorbendo la radiazione ambientale $\gamma$ e riducendo la radioattività di fondo. Questi strati schermano efficacemente i raggi cosmici e le particelle cariche provenienti dall'ambiente esterno.
+    \item \textbf{scudi attivi:} un sistema di scintillatori viene utilizzato per rilevare i muoni cosmici residui ed eliminarli \textit{a posteriori}.
+\end{itemize}
+
+In particolare l'articolata successione di scudi passivi, rappresentata in Figura \ref{fig:shielding}, dall'esterno all'interno consta di:
+
+\begin{wrapfigure}{r}{0.45\textwidth}
+    \centering
+    \vspace{-20pt} % Riduce lo spazio bianco sopra la figura per allinearla al testo
+    \includegraphics[width=0.42\textwidth]{figures/Schematic-cross-section-of-the-CRESST-setup-27-showing-the-structure-of-the-cryostat.ppm.png}
+    \caption{Schema del sistema di schermatura di CRESST.}
+    \label{fig:shielding}
+    \vspace{-10pt} % Riduce lo spazio bianco sotto la didascalia
+\end{wrapfigure}
+
+\begin{enumerate}
+    \item uno spesso strato di polietilene (\SI{40}{\cm}), che funge da moderatore per i neutroni ambientali. Grazie alla composizione chimica ricca di idrogeno, il polietilene rallenta i neutroni veloci, riducendo la loro energia fino a valori termici, per poi essere catturati tramite cattura radiativa.
+    \item uno strato di piombo di circa \SI{20}{\cm}, che riduce la radioattività ambientale $\gamma$. Poiché il piombo è leggermente radioattivo, a causa della presenza di $^{210}\text{Pb}$, si utilizza piombo o a basso contenuto di questo isotopo, o piombo antico, che ha avuto il tempo di decadere.
+    \item uno strato di rame di circa \SI{14}{\cm} estremamente radiopuro, che funge da ultima barriera e riduce al minimo il rumore di fondo.
+\end{enumerate}
+
+Inoltre, in Figura \ref{fig:shielding} è rappresentato uno spessore viola associato al termine "muon veto". Questo scudo rappresenta l'ultimo metodo (attivo) di schermaggio contro i muoni cosmici residui. Essendo sotto \SI{1400}{\metre} di roccia, il flusso di muoni cosmici è ridotto di circa sei ordini di grandezza rispetto alla superficie terrestre, raggiungendo un valore di $1$ muone al metro quadro ogni ora, che rischierebbe di contaminare eccessivamente il segnale di materia oscura. 
+
+Per questo motivo viene installato un sistema di scintillatori plastici che, colpiti da un muone, si eccitano, per poi tornare allo stato fondamentale emettendo fotoni di scintillazione, raccolti da tubi fotomoltiplicatori. Quando i fotomoltiplicatori registrano il passaggio di un muone e viene contemporaneamente rilevato un evento nel cristallo, esso viene scartato, poiché non dovuto a materia oscura.

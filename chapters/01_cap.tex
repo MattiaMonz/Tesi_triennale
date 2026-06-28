@@ -19,14 +19,14 @@ Una delle evidenze più robuste e immediate della presenza di materia oscura su 
 
 Sperimentalmente, la determinazione delle velocità a grandi distanze dal nucleo è resa possibile dall'osservazione dello spostamento Doppler (redshift e blueshift) della riga di emissione a \SI{21}{\cm} dell'idrogeno neutro. Esso rappresenta un ottimo tracciante cinematico poiché le nubi di idrogeno neutro si estendono molto al di fuori del disco visibile della galassia, permettendo di raccogliere dati anche a molti kiloparsec di distanza dal centro galattico.
 
-Dal punto di vista teorico, assumendo che la massa della galassia sia concentrata prevalentemente nella sua componente luminosa (stelle e gas) all'interno del bulge centrale e del disco, per regioni sufficientemente distanti dal centro ($r > R_{\mm{gal}}$) la massa racchiusa $M(r)$ approssima la massa totale visibile $M_{\mm{tot}}$ e diventa costante. Applicando la legge di gravitazione universale di Newton a un corpo di massa $m$ in orbita circolare, si impone l'uguaglianza tra la forza gravitazionale e la forza centripeta:
+Dal punto di vista teorico, assumendo che la massa della galassia sia concentrata prevalentemente nella sua componente luminosa (stelle e gas) all'interno del bulge centrale e del disco, per regioni sufficientemente distanti dal centro ($r > R_{\mm{gal}}$) la massa racchiusa $M(r)$ approssima la massa totale visibile $M_{\mm{tot}}$ e diventa costante. Uguagliando la forza gravitazionale e la forza centripeta
 
 \begin{equation}
 \frac{G M(r) m}{r^2} = \frac{m v^2(r)}{r}
 \label{eq:equilibrio_centripeto}
 \end{equation}
 
-Esplicitando la velocità orbitale si ottiene il profilo kepleriano atteso:
+ed esplicitando la velocità orbitale, si ottiene il profilo kepleriano atteso:
 
 \begin{equation}
 v(r) = \sqrt{\frac{G M(r)}{r}} \propto \frac{1}{\sqrt{r}}
@@ -48,11 +48,7 @@ Per mantenere $v(r) = \text{costante}$ nell'equazione \eqref{eq:andamento_kepler
 \begin{equation}
 M(r) \propto r
 \end{equation}
-Questo comportamento implica necessariamente la presenza di una considerevole componente di massa non luminosa che domina le regioni esterne della galassia. Sapendo che la massa racchiusa entro una sfera di raggio $r$ è legata alla densità spaziale di massa $\rho(r)$ dalla relazione:
-\begin{equation}
-M(r) = \int_0^r 4\pi r'^2 \rho(r') \d r'
-\end{equation}
-derivando rispetto a $r$ si deduce che il profilo di densità di questa componente oscura deve decadere come il quadrato del raggio:
+Questo comportamento implica necessariamente la presenza di una considerevole componente di massa non luminosa che domina le regioni esterne della galassia, il cui profilo di densità deve decadere come il quadrato del raggio:
 \begin{equation}
 \rho(r) \propto \frac{1}{r^2}
 \end{equation}
@@ -80,7 +76,7 @@ Se la dinamica cosmologica fosse governata esclusivamente dalla materia barionic
 
 Tuttavia, le mappe della densità di massa totale ottenute mediante tecniche di \textit{gravitational lensing}, sfruttando le distorsioni geometriche della luce proveniente da galassie di fondo, mostrano che i minimi del potenziale gravitazionale si trovano in corrispondenza delle componenti galattiche che non hanno subito collisioni, nettamente separati e spazialmente disaccoppiati dal plasma barionico, come visibile in Figura \ref{fig:bullet_cluster}.
 
-Questo fenomeno di disaccoppiamento spaziale tra la massa visibile e il centro di massa gravitazionale fornisce la prova empirica che la maggior parte della materia nel sistema è costituita da una componente invisibile e dotata di accoppiamento unicamente gravitazionale: la materia oscura.
+Questo fenomeno di disaccoppiamento spaziale tra la massa visibile e il centro di massa gravitazionale fornisce la prova empirica che la maggior parte della materia nel sistema è costituita da una componente invisibile che sicuramente non interagisce nè tramite interazione elettromagnetica nè forte: la materia oscura.
 
 
 \subsection{Anisotropie della Radiazione Cosmica di Fondo (CMB)}
@@ -94,22 +90,22 @@ La mappa della CMB (Figura \ref{fig:CMB}) mostra uno spettro di corpo nero quasi
 
 Nel plasma antecedente alla ricombinazione, la materia barionica era soggetta a due forze contrapposte: l'attrazione gravitazionale, che ne favoriva il collasso, e la pressione di radiazione esercitata dai fotoni (fortemente accoppiati agli elettroni tramite \textit{scattering Thomson}), che tendeva a far espandere il fluido verso l'esterno. Questa competizione generava delle vere e proprie oscillazioni acustiche.
 
-In questo scenario, il ruolo della materia oscura risulta fondamentale. Essendo priva di accoppiamento elettromagnetico, la DM non risentiva della pressione di radiazione dei fotoni. Di conseguenza, ha potuto iniziare il proprio collasso gravitazionale molto prima della ricombinazione, scavando pozzi di potenziale gravitazionale profondi e stabili all'interno dei quali la materia barionica è successivamente precipitata.
+In questo scenario, il ruolo della materia oscura risulta fondamentale. Essendo priva di accoppiamento elettromagnetico, la materia oscura non risentiva della pressione di radiazione dei fotoni. Di conseguenza, ha potuto iniziare il proprio collasso gravitazionale molto prima della ricombinazione, scavando pozzi di potenziale gravitazionale profondi e stabili all'interno dei quali la materia barionica è successivamente precipitata.
 
 L'analisi statistica di queste anisotropie viene eseguita scomponendo la mappa in armoniche sferiche per ricavarne lo spettro di potenza angolare (Figura \ref{fig:PowerSpectrum}). L'altezza e la posizione dei picchi acustici di questo spettro forniscono una misura diretta e ad altissima precisione dei parametri cosmologici. 
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.6\linewidth]{figures/PowerSpectrumExt.svg.png}
-\caption{Spettro di potenza delle anisotropie di temperatura della CMB in funzione della scala angolare (momenti di multipolo). La linea continua mostra l'andamento teorico del modello $\Lambda\text{CDM}$, mentre i punti rappresentano i dati sperimentali. I dati provengono dalle sonde WMAP (2006), ACBAR (2004), BOOMERanG (2005), CBI (2004) e VSA (2004).}
+\includegraphics[width=0.6\linewidth]{figures/spettro_pot_ang.png}
+\caption{Spettro di potenza angolare ottenuto da WMAP-1 (rosso) e WMAP-3 (blu) confrontato con la previsione teorica del modello $\Lambda$CDM (linea nera). L'asse delle ascisse rappresenta il momento di multipolo $\ell$, mentre l'asse delle ordinate mostra l'ampiezza delle anisotropie della CMB. Immagine tratta da \cite{Souradeep2006AngularPS}.}
 \label{fig:PowerSpectrum}
 \end{figure}
 
 Il primo picco, situato a una scala angolare $\theta \approx 1^\circ$ (corrispondente al momento di multipolo $\ell \approx 220$), rappresenta l'ampiezza apparente delle regioni di plasma che hanno fatto in tempo a subire esattamente una sola massima compressione prima del disaccoppiamento. La sua posizione fornisce la prova sperimentale che l'Universo è geometricamente piatto ($\Omega = 1$).
 
-L'evidenza più marcata della materia oscura emerge dall'analisi dei picchi successivi. Il secondo picco, corrispondente alla prima fase di massima rarefazione (il "rimbalzo" del plasma verso l'esterno), risulta significativamente più basso rispetto al primo. Questo smorzamento è dovuto proprio all'azione della materia oscura: non subendo la spinta della radiazione, la DM è rimasta confinata nel fondo dei pozzi di potenziale, esercitando una forte attrazione gravitazionale che ha ostacolato e frenato l'espansione del fluido barionico verso l'esterno. Il terzo picco, legato alla seconda compressione massima, beneficia nuovamente del potenziale gravitazionale della DM, mostrando un'ampiezza accentuata rispetto al secondo e confermando il tipico andamento alternato dello spettro.
+L'evidenza più marcata della materia oscura emerge dall'analisi dei picchi successivi. Il secondo picco, corrispondente alla prima fase di massima rarefazione (il "rimbalzo" del plasma verso l'esterno), risulta significativamente più basso rispetto al primo. Questo smorzamento è dovuto proprio all'azione della materia oscura: non subendo la spinta della radiazione, la materia oscura è rimasta confinata nel fondo dei pozzi di potenziale, esercitando una forte attrazione gravitazionale che ha ostacolato e frenato l'espansione del fluido barionico verso l'esterno. Il terzo picco, legato alla seconda compressione massima, beneficia nuovamente del potenziale gravitazionale della materia oscura, mostrando un'ampiezza paragonabile al secondo picco.
 
-I dati sperimentali più recenti, ottenuti dal satellite Planck della \textit{European Space Agency} (ESA), confermano con straordinaria precisione il modello cosmologico standard $\Lambda\text{CDM}$, stabilendo che la materia oscura fredda (CDM) costituisce circa il $26.8\%$ della densità di energia totale dell'Universo, a fronte di un esiguo $4.9\%$ attribuibile alla materia barionica ordinaria.
+I dati sperimentali confermano con straordinaria precisione il modello cosmologico standard $\Lambda\text{CDM}$, stabilendo che la materia oscura fredda (CDM) costituisce circa il $26.8\%$ della densità di energia totale dell'Universo, a fronte di un esiguo $4.9\%$ attribuibile alla materia barionica ordinaria.
 
 \begin{figure}[htbp]
 \centering
@@ -121,7 +117,7 @@ I dati sperimentali più recenti, ottenuti dal satellite Planck della \textit{Eu
 \section{Possibili candidati di Materia Oscura}
 \label{sec:candidati}
 
-Le evidenze cinematiche e cosmologiche discusse nei paragrafi precedenti delineano l'esistenza di una nuova forma di materia la cui natura fondamentale resta ignota, ma di cui è possibile tracciare un preciso profilo identitario. Affinché un candidato particellare sia fenomenologicamente accettabile, deve soddisfare simultaneamente quattro requisiti fondamentali:
+Le evidenze cinematiche e cosmologiche discusse nei paragrafi precedenti delineano l'esistenza di una nuova forma di materia la cui natura fondamentale resta ignota, ma di cui è possibile tracciare un preciso profilo identitario. Affinché un candidato particellare sia accettabile, deve soddisfare simultaneamente quattro requisiti fondamentali:
 \begin{enumerate}
     \item \textbf{Massivo:} dati gli effetti gravitazionali sulle galassie a spirale
     \item \textbf{Stabile o quasi-stabile:} con un tempo di vita medio nettamente superiore all'età dell'Universo ($\tau \gg 13.8 \times 10^9 \text{ anni}$), garantendone la permanenza dall'epoca della ricombinazione fino all'Universo locale contemporaneo.
@@ -140,11 +136,11 @@ Per catalogare la vasta gamma di particelle ipotizzate dalla fisica teorica, una
 \begin{figure}[t]
 \centering
 \includegraphics[width=0.6\linewidth,angle=0]{figures/freeze_in_out.png}
-\caption{Confronto cinematico tra i meccanismi di produzione termica (\textit{freeze-out}, linee continue a destra) e non termica (\textit{freeze-in}, linee tratteggiate a sinistra) in funzione del parametro evolutivo $x = m_\chi / T$. La linea grigia orizzontale indica il valore della densità relitta misurato dal satellite Planck ($\Omega_{\chi} h^2 \approx 0.12$). Nel \textit{freeze-out}, le curve deviano dall'abbondanza di equilibrio termico a seconda della sezione d'urto di annichilazione. La linea verde, che fitta perfettamente i dati di Planck, corrisponde al valore ideale dell'interazione debole ($\sim 10^{-26} \text{ cm}^3\text{s}^{-1}$, il \textit{WIMP miracle}). Nel \textit{freeze-in}, l'abbondanza parte da zero e cresce per rari urti termici fino a stabilizzarsi; la linea verde tratteggiata rappresenta il valore di sezione d'urto di produzione necessario a riprodurre correttamente la densità di materia oscura attuale ($\sim 10^{-47} \text{ cm}^3\text{s}^{-1}$, impossibile da rilevare in esperimenti come CRESST).}
+\caption{Confronto cinematico tra i meccanismi di produzione termica (\textit{freeze-out}, linee continue a destra) e non termica (\textit{freeze-in}, linee tratteggiate a sinistra) in funzione del parametro evolutivo $x = m_\chi / T$. La linea grigia orizzontale indica il valore della densità relitta misurato dal satellite Planck ($\Omega_{\chi} h^2 \approx 0.12$). Nel \textit{freeze-out}, le curve deviano dall'abbondanza di equilibrio termico a seconda della sezione d'urto di annichilazione. La linea verde, che fitta perfettamente i dati di Planck, corrisponde al valore ideale dell'interazione debole ($\sim 10^{-26} \text{ cm}^3\text{s}^{-1}$, il \textit{WIMP miracle}). Nel \textit{freeze-in}, l'abbondanza parte da zero e cresce per rari urti termici fino a stabilizzarsi; la linea verde tratteggiata rappresenta il valore di sezione d'urto di produzione necessario a riprodurre correttamente la densità di materia oscura attuale ($\sim 10^{-47} \text{ cm}^3\text{s}^{-1}$, impossibile da rilevare in esperimenti come CRESST). Immagine tratta da \cite{Chu2012DM}.}
 \label{fig:freeze_in_out}
 \end{figure}
 
-Un secondo criterio di classificazione, complementare al primo, riguarda il meccanismo di produzione della densità di materia oscura ($\Omega_{\mm{DM}}$) misurata oggi, illustrato anche in Figura \ref{fig:freeze_in_out}:
+Un secondo criterio di classificazione, riguarda il meccanismo di produzione della densità di materia oscura ($\Omega_{\mm{DM}}$) misurata oggi, illustrato in Figura \ref{fig:freeze_in_out}:
 \begin{itemize}
     \item \textbf{Produzione Termica:} La materia oscura si trovava inizialmente in equilibrio termico e chimico con il plasma del Modello Standard nell'Universo primordiale, attraverso interazioni della forma
     \begin{equation}
@@ -156,6 +152,13 @@ Un secondo criterio di classificazione, complementare al primo, riguarda il mecc
 \end{itemize}
 
 I candidati più quotati al giorno d'oggi sono le WIMPs e gli assioni, entrambi appartenenti alla famiglia della Cold Dark Matter. Uno schema di tutti i possibili candidati in funzione della massa è riportato in Figura \ref{fig:candidati}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=1\linewidth,angle=0]{figures/dmmassrange_appecdmddreport_2020_v102.png}
+\caption{Principali candidati di materia oscura divisi in range di massa, dal peV (assioni) alla massa di Planck ($1.2\cdot10^{19} \, \text{GeV}$)}
+\label{fig:candidati}
+\end{figure}
 
 \subsection{WIMPs (Weakly Interacting Massive Particles)}
 \label{subsec:wimps}
@@ -170,13 +173,6 @@ Quando il tasso di espansione dell'Universo ($H$) è diventato confrontabile e p
 
 È interessante notare come le conclusioni teoriche ricavate inserendo i valori tipici della sezione d'urto dell'interazione debole conducano a una densità relitta che coincide sorprendentemente con i dati sperimentali osservati dal satellite Planck. Questa convergenza spontanea prende il nome di \textit{WIMP miracle}, e fornisce una solida giustificazione teorica alla ricerca di tali candidati nella finestra energetica dei $\mathrm{GeV}$-$\mathrm{TeV}$.
 
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=1\linewidth,angle=0]{figures/dmmassrange_appecdmddreport_2020_v102.png}
-\caption{Principali candidati di materia oscura divisi in range di massa, dal peV (assioni) alla massa di Planck ($1.2\cdot10^{19} \, \text{GeV}$)}
-\label{fig:candidati}
-\end{figure}
-
 \subsection{Assioni}
 \label{subsec:assioni}
 
@@ -187,7 +183,7 @@ La caratteristica principale dell'assione è la sua massa estremamente ridotta, 
 
 Essendo particelle così leggere, si potrebbe erroneamente dedurre che gli assioni si muovano a velocità relativistiche, comportandosi come materia oscura calda. Tuttavia, queste particelle state generate da un processo detto meccanismo di disallineamento, che prevede la creazione di queste particelle a partire da oscillazioni del campo quantistico dell'assione, poiché esso si trovava disallineato rispetto al suo stato di minima energia. Queste oscillazioni si comportano come particelle con momento lineare quasi nullo, e dunque un candidato di CDM.
 
-Dal punto di vista sperimentale, l'assione interagisce in modo talmente debole da non poter essere rivelato tramite gli urti nucleari cercati da esperimenti come CRESST. La ricerca di queste particelle avviene quindi tramite esperimenti radicalmente diversi dalle ricerche WIMP, basati sull'uso di speciali cavità risonanti note come aloscopi, che sfruttano la caratteristica degli assioni di convertirsi in fotoni (tipicamente nella frequenza delle microonde) quando attraversano un campo magnetico molto intenso.
+Dal punto di vista sperimentale, l'assione interagisce in modo talmente debole da non poter essere rivelato tramite gli urti nucleari cercati da esperimenti come CRESST. La ricerca di queste particelle avviene quindi tramite esperimenti radicalmente diversi dalla ricerca WIMP, basati sull'uso di speciali cavità risonanti note come aloscopi, che sfruttano la caratteristica degli assioni di convertirsi in fotoni (tipicamente nella frequenza delle microonde) quando attraversano un campo magnetico molto intenso.
 
 \section{Tecniche di rivelazione}
 \label{sec:rivelazione}
@@ -292,7 +288,7 @@ Il fattore di forma riflette la natura estesa del nucleo atomico. Per energie di
 
 Data la proporzionalità tra la sezione d'urto differenziale e il quadrato del numero atomico $A^2$, si potrebbe ipotizzare di utilizzare esclusivamente elementi molto pesanti. Tuttavia, come evidenziato in \ref{eq:energia_massima} e in Figura \ref{fig:Energia_rinculo}, qualora la massa della WIMP fosse di qualche $\mm{GeV}$, l'energia trasferita sarebbe così bassa da non poter essere rivelata dagli strumenti. Per questa ragione CRESST utilizza cristalli multielemento: tre elementi diversi per massimizzare l'energia trasferita e la sezione d'urto.
 
-\subsubsection{Canali di segnale e tecnologie di rivelazione}
+\subsubsection{Tecnologie di rivelazione}
 \label{subsubsec:canali_segnali}
 
 Quando una particella di materia oscura urta un nucleo del materiale bersaglio, l'energia di rinculo rilasciata si dissipa nel mezzo attraverso tre canali di segnale fondamentali:
@@ -303,7 +299,7 @@ Quando una particella di materia oscura urta un nucleo del materiale bersaglio, 
     \item \textbf{Fononi (Calore):} La frazione maggiore dell'energia di rinculo si traduce in vibrazioni del reticolo cristallino del materiale bersaglio, quantizzate sotto forma di fononi. Questa tecnica richiede di operare a temperature criogeniche (prossime allo zero assoluto) per minimizzare il rumore termico spontaneo del cristallo, permettendo di raggiungere soglie energetiche bassissime e risoluzioni estremamente elevate.
 \end{itemize}
 
-Gli esperimenti di rivelazione diretta moderni combinano spesso due di questi canali contemporaneamente. Questa strategia è di fondamentale importanza poiché il rapporto tra i due segnali (ad esempio luce e calore) permette di discriminare con altissima efficienza i rinculi nucleari indotti dalle WIMP dai rinculi elettronici dovuti alla radioattività ambientale di fondo. I diversi approcci tecnologici e i relativi esperimenti di riferimento sono riassunti schematicamente in Figura \ref{fig:approcci}.
+Gli esperimenti di rivelazione diretta moderni combinano spesso due di questi canali contemporaneamente. Questa strategia è di fondamentale importanza poiché il rapporto tra i due segnali (ad esempio luce e calore) permette di discriminare con altissima efficienza i rinculi nucleari indotti dalle WIMP dai rinculi elettronici dovuti alla radioattività ambientale di fondo, come si vedrà nella Sezione \ref{sec:light_yield}. I diversi approcci tecnologici e i relativi esperimenti di riferimento sono riassunti schematicamente in Figura \ref{fig:approcci}.
 
 \begin{figure}[htbp]
     \centering
@@ -314,8 +310,6 @@ Gli esperimenti di rivelazione diretta moderni combinano spesso due di questi ca
 
 \section{Stato dell'arte ed evoluzione delle sensibilità}
 
-I limiti di esclusione per la sezione d'urto di interazione WIMP-nucleone in funzione della massa della particella sono schematicamente riassunti attraverso il confronto tra lo scenario attuale e le proiezioni della fisica per il futuro.
-
 In Figura \ref{fig:stato_attuale} è riportato lo stato attuale della ricerca diretta di materia oscura. La regione verde in alto individua lo spazio dei parametri già escluso dai risultati ottenuti. Dal grafico si nota come l'esperimento XENON1T definisca il limite inferiore di sensibilità per WIMP di massa elevata, mentre l'esperimento CRESST III domini la regione delle WIMP a bassa massa grazie all'elevata sensibilità dei rivelatori.
 
 \begin{figure}[htbp]
@@ -325,7 +319,7 @@ In Figura \ref{fig:stato_attuale} è riportato lo stato attuale della ricerca di
     \label{fig:stato_attuale}
 \end{figure}
 
-Le proiezioni future sono illustrate in Figura \ref{fig:stato_futuro}. È utile notare come la regione verde sia la medesima del grafico precedente, mentre cambiano i valori di sezione d'urto sull'asse verticale. I rivelatori di nuova generazione attualmente in presa dati o in fase di sviluppo in scala di multi-tonnellata (quali XENONnT, LZ e DarkSide-20k) estenderanno ulteriormente la sensibilità, fino a raggiungere il limite intrinseco costituito dalla cosiddetto \textit{neutrino floor}. I progetti a lungo termine, come DARWIN o ARGO, mirano a sondare direttamente questa regione di fondo irriducibile. Parallelamente, per masse inferiori, futuri upgrade di CRESST e altri esperimenti mirati consentiranno di ridurre significativamente lo spazio dei parametri ancora non esplorato.
+Le proiezioni future sono illustrate in Figura \ref{fig:stato_futuro}. È utile notare come la regione verde sia la medesima del grafico precedente, mentre cambiano i valori di sezione d'urto sull'asse verticale. I rivelatori di nuova generazione attualmente in presa dati o in fase di sviluppo in scala di multi-tonnellata (quali XENONnT, LZ e DarkSide-20k) estenderanno ulteriormente la sensibilità, fino a raggiungere il limite intrinseco costituito dalla cosiddetto \textit{neutrino floor}. Parallelamente, per masse inferiori, futuri upgrade di CRESST e altri esperimenti mirati consentiranno di ridurre significativamente lo spazio dei parametri ancora non esplorato.
 
 \begin{figure}[htbp]
     \centering
