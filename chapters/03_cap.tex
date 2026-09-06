@@ -1,0 +1,198 @@
+\chapter{Costruzione dell'Optimum Filter e Caratterizzazione del Rumore}
+\label{ch: OF}
+
+Negli esperimenti dedicati alla rivelazione di eventi rari e a basso rilascio energetico, come la ricerca diretta di materia oscura, la massimizzazione del rapporto segnale-rumore (\textit{Signal-to-Noise Ratio}, SNR) rappresenta un requisito primario. Ottimizzare l'SNR consente infatti di abbassare drasticamente la soglia energetica del rivelatore ($E_{\text{th}}$), garantendo al contempo un compromesso ideale tra il rigetto dei trigger spuri dovuti a fluttuazioni termiche o elettroniche e l'efficienza di selezione degli eventi fisici autentici. In questo capitolo verrà introdotto il formalismo teorico e operativo dell'\textit{Optimum Filter} (OF), affiancato dalle metodologie adottate per la caratterizzazione e il trattamento del rumore sperimentale.
+
+Nell'esperimento CRESST i dati vengono acquisiti in modalità continua con una frequenza di campionamento pari a $25\,\text{kHz}$ (intervallo temporale tra due campioni consecutivi $\Delta t = 40\,\mu\text{s}$). La registrazione continua offre il vantaggio fondamentale di poter applicare algoritmi di filtraggio digitale direttamente sul flusso dati grezzo a monte del trigger logico, riducendo l'impatto del rumore ad alta frequenza e abbassando la soglia di trigger effettiva. 
+
+Per monitorare costantemente la stabilità della risposta termica del rivelatore e verificarne il punto di lavoro lungo la curva di transizione del film superconduttore (TES), vengono periodicamente iniettati nel cristallo impulsi di calore artificiali tramite riscaldatori ohmici (\textit{heater}) integrati:
+\begin{itemize}
+    \item \textbf{TestPulses:} impulsi con ampiezza programmata variabile (tipicamente tra $0.1\,\text{V}$ e $10\,\text{V}$ all'uscita del generatore), utilizzati per campionare linearità, guadagno e risoluzione del sistema su un ampio intervallo energetico (Figura~\ref{fig:TestPulse});
+    \item \textbf{ControlPulses:} impulsi ad ampiezza elevata e fissa (convenzionalmente $20\,\text{V}$), progettati per saturare la risposta del TES (Figura~\ref{fig:ControlPulse}). La saturazione fornisce un riferimento stabile ed è  fondamentale per la stabilizzazione del punto di lavoro.
+\end{itemize}
+
+\begin{figure}[htbp]
+    \centering
+    \begin{minipage}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/ControlPulse.png}
+        \caption*{(a) Impulso a 20\,V (ControlPulse).}
+        \label{fig:ControlPulse}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/testpulse.png}
+        \caption*{(b) Impulsi tra 0.1\,V e 10\,V (TestPulses).}
+        \label{fig:TestPulse}
+    \end{minipage}
+    \vspace{0.8em}
+    \caption{Risposta del rivelatore agli impulsi iniettati tramite heater: (a) singolo \textit{ControlPulse} saturo e (b) serie di dodici \textit{TestPulses} ad ampiezza variabile campionati lungo l'intervallo di 65536 campioni.}
+    \label{fig:PulsesComparison}
+\end{figure}
+
+Per ciascun evento identificato, la finestra temporale salvata in memoria ha una lunghezza complessiva di $65536$ campioni, corrispondente a una durata di circa $2.62\,\text{s}$. L'evento viene collocato convenzionalmente ad un quarto della lunghezza della traccia, ovvero attorno al campione $16384$ ($\approx 655.4\,\text{ms}$). Questa asimmetria permette di stimare con accuratezza il livello e le fluttuazioni della baseline prima dell'evento, e fornisce il tempo sufficiente per osservare l'intero rilassamento termico del cristallo.
+
+I parametri rilevanti necessari per caratterizzare i segnali sono: 
+\begin{itemize}
+    \item \textbf{Baseline Offset:} valore medio della tensione calcolato nei campioni della regione di pre-trigger, utilizzato per sottrarre la componente continua (DC);
+    \item \textbf{Baseline Slope:} pendenza lineare della baseline pre-trigger, indicativa di derive termiche a bassissima frequenza in atto durante il campionamento;
+    \item \textbf{Baseline RMS:} deviazione standard della tensione nella regione indisturbata, che fornisce una misura immediata del livello di rumore stocastico istantaneo;
+    \item \textbf{Baseline Difference:} differenza tra il valore medio della baseline precedente l'impulso e quello misurato al termine della finestra (ultimi campioni), utile a verificare che il cristallo sia tornato all'equilibrio termico e ad escludere gradini dovuti a pile-up;
+    \item \textbf{Rise Time (RT):} intervallo di tempo impiegato dal segnale per salire dal $10\%$ al $90\%$ dell'ampiezza massima, legato alla termalizzazione primaria e alla costante di tempo del circuito di lettura;
+    \item \textbf{Decay Time (DT):} tempo impiegato dall'impulso per decadere dal $90\%$ al $10\%$ del massimo, dominato dal rilassamento termico del cristallo verso il bagno freddo;
+    \item \textbf{Optimum Filter Pulse Height (OF\_PH):} ampiezza dell'impulso stimata dal massimo della traccia filtrata con l'Optimum Filter, parametro proporzionale all'energia depositata;
+    \item \textbf{Peak Position:} coordinata temporale del massimo assoluto identificato lungo la finestra di acquisizione.
+\end{itemize}
+
+In (Figura~\ref{fig:Parametri_particella}) è rappresentato un impulso dovuto all’interazione del cristallo con una particella e il valore dei parametri che caratterizzano l’evento
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.95\textwidth]{figures/Parametri_particella.png}
+    \caption{Esempio di traccia registrata corrispondente all'interazione di una particella nel cristallo (a sinistra) e relativa tabella dei parametri calcolati (a destra).}
+    \label{fig:EventExample}
+\end{figure}
+
+\section{Optimum Filter}
+
+Per estrarre il valore di energia rilasciata da una particella durante l'interazione con un cristallo, la via più immediata consisterebbe nel campionare il massimo assoluto della traccia registrata a seguito di sottrazione della baseline. Tuttavia, specialmente per eventi a bassa energia dove l'ampiezza dell'impulso diventa confrontabile con l'RMS del fondo, il valore restituito coincide con la somma costruttiva tra il picco fisico e la fluttuazione stocastica più alta presente in quell'istante. Tale approccio introduce un bias sistematico positivo nella stima dell'ampiezza.
+
+Per superare questa limitazione si ricorre all'uso dell'\textit{Optimum Filter} (OF), sviluppato originariamente da Gatti e Manfredi~\cite{gatti_manfredi}, che amplifica le frequenze tipiche di un impulso e sopprime le frequenze tipiche del rumore. L'algoritmo sfrutta il fatto che impulsi generati da diverse deposizioni energetiche condividono la forma d’onda, differendo unicamente per un fattore di scala proporzionale all'energia rilasciata.
+
+Una generica traccia di tensione acquisita $v(t)$, depurata dall'offset continuo della baseline, può quindi essere modellata come:
+\begin{equation}
+    v(t) = A \cdot s(t - t_0) + n(t)
+    \label{eq:segnale_modello}
+\end{equation}
+dove:
+\begin{itemize}
+    \item $s(t)$ rappresenta il \textit{template} del segnale, ovvero la forma d'onda unitaria attesa ($\max[s(t)] = 1$);
+    \item $A$ è l'ampiezza incognita dell'impulso da stimare;
+    \item $t_0$ indica l'istante temporale in cui si verifica l'interazione;
+    \item $n(t)$ è il rumore stocastico stazionario sovrapposto al segnale.
+\end{itemize}
+
+L'obiettivo dell'Optimum Filter è definire un filtro con funzione di trasferimento $H(f)$ che, applicato alla traccia $V(f)$ nello spazio delle frequenze, fornisca uno stimatore $\hat{A}$ dell'ampiezza. La funzione di trasferimento assume la forma:
+\begin{equation}
+    H(f) = K \frac{S^*(f)}{N(f)} e^{-i 2\pi f t_0}
+    \label{eq:OF_transfer_function}
+\end{equation}
+dove:
+\begin{itemize}
+    \item $S^*(f)$ è il complesso coniugato della trasformata di Fourier del template $s(t)$, responsabile del \textit{matched filtering} (pesa le armoniche in cui è concentrata l'energia del segnale fisico);
+    \item $N(f)$ è la densità spettrale di potenza del rumore (\textit{Noise Power Spectrum}, NPS), responsabile del \textit{noise whitening} (attenua le frequenze dominate da disturbi sperimentali o ambientali);
+    \item $e^{-i 2\pi f t_0}$ tiene conto dell'eventuale traslazione temporale del segnale lungo la finestra di acquisizione;
+    \item $K$ è una costante di normalizzazione reale, imposta dal vincolo di non polarizzazione ($\hat{A} = A$):
+    \begin{equation}
+        K = \left( \int_{-\infty}^{+\infty} \frac{|S(f)|^2}{N(f)} \, df \right)^{-1}
+        \label{eq:costante_normalizzazione}
+    \end{equation}
+    che, per segnali campionati a tempo discreto con trasformata discreta (FFT su frequenze positive), viene valutata numericamente tramite una sommatoria pesata sui bin di frequenza.
+\end{itemize}
+
+Una volta calcolata $H(f)$, il segnale filtrato nel dominio del tempo si ottiene antitrasformando il prodotto tra lo spettro dell'evento e la funzione di trasferimento:
+\begin{equation}
+    v_{\text{filt}}(t) = \mathcal{F}^{-1} \Big[ V(f) \cdot H(f) \Big]
+\end{equation}
+Il valore di ampiezza cercato ($\hat{A}$) corrisponde al massimo assoluto di $v_{\text{filt}}(t)$, mentre la posizione di tale picco identifica il parametro \textit{Peak Position}.
+
+Nei paragrafi seguenti vengono descritte le procedure sperimentali e di analisi adottate per ricavare i due elementi costitutivi del filtro: la costruzione della densità spettrale di potenza $N(f)$ a partire dai dati di rumore e l'estrazione del template $S(f)$.
+
+
+\subsection{Costruzione del Noise Power Spectrum (NPS)}
+
+Per costruire il \textit{Noise Power Spectrum} (NPS) è necessario isolare un campione rappresentativo del rumore stazionario del rivelatore, selezionando finestre temporali (\textit{noise traces}) prive di segnali fisici. 
+
+Tuttavia, la selezione di questi eventi non può essere puramente casuale. Durante l'acquisizione continua, il rumore termico e l'elettronica di lettura sono soggetti a lente derive a bassa frequenza (\textit{baseline drift}). Se si estrae una finestra temporale in cui è in atto una deriva, i livelli di tensione all'inizio e alla fine dell'acquisizione risulteranno disallineati. Poiché la Trasformata Discreta di Fourier (DFT) assume implicitamente che il segnale sia un anello periodico, tale disallineamento viene interpretato dall'algoritmo come un brusco gradino artificiale. Questo artefatto topologico introduce una forte componente spuria a bassa frequenza (\textit{spectral leakage}) che distorce e sovrastima enormemente lo spettro reale del rumore (Figura~\ref{fig:gradino}).
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/NPS_baselines.png}
+    \caption{Confronto tra due tracce di rumore: il primo evento (in alto) è affetto da una severa deriva della baseline che introduce un macroscopico gradino tra i bordi della finestra; il secondo (in basso) presenta una baseline stabile. Si osserva che nel dominio delle frequenze l'evento disallineato genera un'iniezione di potenza fittizia a bassa frequenza, assente nell'evento stazionario.}
+    \label{fig:gradino}
+\end{figure}
+
+Per garantire che l'NPS rifletta esclusivamente le fluttuazioni stocastiche fisiche del sistema, il dataset iniziale viene depurato scartando le tracce non ideali. I filtri applicati in successione sono:
+\begin{itemize}
+    \item \textbf{Taglio sull'ampiezza (Pulse Height):} vengono scartati gli eventi il cui picco massimo supera i $4\,\text{mV}$, al fine di escludere deboli eventi particellari sommersi o transienti impulsivi non riconosciuti dal trigger;
+    \item \textbf{Taglio sulla stabilità (Baseline Difference):} si impone che la differenza in valore assoluto tra la media dei primi e degli ultimi campioni della traccia sia inferiore a $0.5\,\text{mV}$. Questo elimina tracce affette da \textit{pile-up} termico irrisolto o gradienti lineari eccessivi;
+    \item \textbf{Taglio sulla stazionarietà (Fit polinomiale):} le tracce sopravvissute vengono fittate con un polinomio di terzo grado per modellarne la dinamica a bassa frequenza. Si conservano esclusivamente gli eventi i cui coefficienti di fit ricadono tra il $10^\circ$ e il $90^\circ$ percentile della distribuzione totale, rigettando così i transienti anomali o fortemente non stazionari.
+\end{itemize}
+
+Sugli eventi idonei così selezionati, si procede alla rimozione analitica della deriva residua sottraendo il polinomio di terzo grado (\textit{detrending}). Successivamente, si calcola la Trasformata di Fourier $V_i(f)$ di ciascuna delle $M$ tracce pulite. 
+
+Il \textit{Noise Power Spectrum} non è semplicemente la media delle trasformate, ma la stima della Densità Spettrale di Potenza (PSD). Per fare in modo che l'NPS sia una grandezza fisica intensiva — e dunque non dipenda dal numero di campioni $N$, dalla durata della finestra temporale o dalla frequenza di campionamento $f_s$ dell'algoritmo DFT utilizzato — lo spettro viene rigorosamente normalizzato:
+\begin{equation}
+    N(f) = \frac{2}{N f_s} \frac{1}{M} \sum_{i=1}^{M} |V_i(f)|^2
+\end{equation}
+In questa formulazione (\textit{periodogramma mediato}):
+\begin{itemize}
+    \item Il termine $\frac{1}{M} \sum_{i=1}^{M} |V_i(f)|^2$ rappresenta la media di ensemble del modulo quadro degli spettri;
+    \item Il fattore $\frac{1}{N f_s}$ converte l'output discreto della FFT in una vera e propria densità di potenza, eliminando la dipendenza dalla lunghezza dell'array;
+    \item Il fattore $2$ (applicato a tutte le frequenze tranne la componente continua e la frequenza di Nyquist) permette di conservare l'energia totale piegando la simmetria delle frequenze negative su quelle positive (\textit{single-sided PSD}). 
+\end{itemize}
+Questa normalizzazione garantisce che $N(f)$ abbia le dimensioni fisiche di una varianza per unità di banda ($\text{V}^2/\text{Hz}$), rendendo il filtro matematicamente coerente e universale.
+
+In questa analisi sono stati selezionati circa $1000$ eventi di rumore puro, dai quali è stato calcolato lo spettro mostrato in Figura~\ref{fig:NPS}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/NPS.png}
+    \caption{\textit{Noise Power Spectrum} ottenuto dalla media e normalizzazione di circa 1000 eventi di rumore, precedentemente filtrati e detrendizzati con un fit di terzo grado.}
+    \label{fig:NPS}
+\end{figure}
+
+Dall'osservazione dello spettro emerge un picco dominante a $50\,\text{Hz}$ e relative armoniche, in particolare a $150\,\text{Hz}$ e $250\,\text{Hz}$. Queste componenti spettrali rappresentano la firma caratteristica del rumore della rete elettrica (captazione elettromagnetica o \textit{ground loop} concatenati ai circuiti elettronici del rivelatore). Il ruolo primario dell'NPS all'interno dell'algoritmo dell'\textit{Optimum Filter} è proprio questo: fornendo a denominatore la densità di potenza del rumore per ogni frequenza, il filtro attenuerà drasticamente le armoniche dominate da queste oscillazioni parassite, restituendo il massimo peso statistico alle regioni spettrali in cui il segnale fononico è prevalente.
+
+\subsection{Estrazione del Template Fononico}
+Il secondo elemento necessario per la costruzione dell'Optimum filter è il template del segnale fononico $s(t)$.
+Come precedentemente detto la forma di un segnale fononico è indipendente dall'energia rilasciata (equazione segnale modello), che funge solo da fattore di scala per la forma dell'evento.
+Per trovare il template fit dei fononi l'obiettivo è quello di selezionare tracce di eventi fisici ed effettuare una media, così da ridurre il rumore stocastico e ottenere una forma d'onda rappresentativa del segnale.
+La media è stata effettuata prendendo n eventi dati dall'interazione del cristallo con i fotoni emessi dal decadimento del Ferro 55, posizionato fuori dal rivelatore. La scelta è ricaduta su questoi eventi poiché il ferro emette a circa 6keV, e l'interazione con il cristallo non satura il TES, permettendo di ottenere un template lineare e rappresentativo della risposta del rivelatore (figura esempio evento Ferro 55).
+Notando che gli eventi del Ferro hanno la pulse height dell'optimum filter compresa tra 0.8V e 0.9V, il primo taglio è stato effettuato su questa variabile. In seguito sono stati effettuati tagli anche sulla baseline difference e sulla min derivative, per togliere eventi con spike negative date da problemi dell'elettronica durante l'acquisizione.
+In figura sono riportati alcuni esempi di eventi scartati da questi filtri che avrebbero inquinato il template fit dell'evento fononico.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/eventi_rigettati.png}
+    \caption{Esempio di eventi rigettati dall'applicazione dei filtri.}
+    \label{fig:eventi_rigettati}
+\end{figure}
+
+Tuttavia da soli questi filtri non sono sufficienti a garantire che tutti gli eventi siano puliti. In figura è riportato un altro esempio di evento con pile-up, ovvero due eventi nella stessa finestra di acquisizione. In questo caso il primo evento è un evento del Ferro 55, mentre il secondo è un evento di particella o un TestPulse. Questo evento non presenta difference di baseline significative e non presenta spike negative, per questo motivo non sarebbe stato rigettato dai filtri precedenti. Tuttavia la sua presenza all'interno degli eventi con cui si sarebbe costruito il template avrebbe inquinato notevolmente la forma d'onda media, rendendola non rappresentativa del segnale fononico.
+Si è reso necessario quindi costruire un filtro che permettesse di rigettare gli eventi di pile-up. Non potendo fare affidamento alla derivata prima della traccia, che a causa del rumore non segue un andamento regolare, si è deciso di applicare un filtro, detto filtro di Savitzky-Golay.
+
+\subsubsection{Filtro di Savitzky-Golay e identificazione del pile-up}
+
+Il filtro di Savitzky-Golay è un algoritmo di filtraggio digitale (\textit{smoothing}) che approssima localmente i dati tramite polinomi di un grado prestabilito. L'algoritmo definisce una finestra mobile centrata sull'$n$-esimo campione; all'interno di questa finestra, i punti vengono fittati ai minimi quadrati con un polinomio di grado $p$. Il valore grezzo del segnale $v[n]$ viene quindi sostituito dal valore del polinomio in quel punto, ottenendo il segnale filtrato $y[n]$. A differenza di una semplice media mobile, questo approccio riduce efficacemente il rumore ad alta frequenza preservando intatte le caratteristiche morfologiche fondamentali del segnale, come l'altezza e la pendenza dei picchi.
+
+Una volta smussata la traccia, un algoritmo di \textit{peak-finding} scorre il segnale $y[n]$ alla ricerca dei massimi locali, identificati tramite la seguente condizione discreta:
+\begin{equation}
+    y[n-1] < y[n] \quad \text{e} \quad y[n] > y[n+1]
+\end{equation}
+
+Poiché il rumore residuo potrebbe generare increspature scambiate per veri e propri impulsi, la validazione dei picchi è soggetta a due vincoli fisici:
+\begin{itemize}
+    \item \textbf{Distanza temporale:} due picchi consecutivi devono essere separati da almeno 60 ms, garantendo la distinzione tra fluttuazioni di un singolo evento e interazioni separate;
+    \item \textbf{Prominenza:} il picco deve emergere rispetto al segnale circostante di almeno 0.05 V.
+\end{itemize}
+
+Le tracce in cui vengono identificati due o più massimi validi vengono classificate come eventi di \textit{pile-up} (generati dall'interazione di due o più particelle in un lasso di tempo troppo breve per permettere il completo rilassamento termico del rivelatore) e vengono di conseguenza rigettate dall'analisi. 
+
+In Figura \ref{fig:evento_rigettato_pileup} è mostrato un esempio applicativo in cui l'algoritmo riconosce correttamente la presenza di un doppio impulso e scarta l'evento.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/Esempio_Savitzky_Golay.png}
+    \caption{Esempio di evento di pile-up rigettato. La traccia rossa (segnale filtrato tramite Savitzky-Golay) permette di identificare i due massimi locali fisici, eludendo le piccole fluttuazioni ad alta frequenza del segnale grezzo che porterebbero all'identificazione di falsi picchi.}
+    \label{fig:evento_rigettato_pileup}
+\end{figure}
+
+Dopo l'estrazione delle finestre buone si procede con la media dei segnali, ottenendo il template fononico $s(t)$ mostrato in Figura \ref{fig:template_fononico}. 
+\begin{figure}
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/impulso_normalizzato_Ferro.png}
+    \caption{Template fononico $s(t)$ ottenuto dalla media di 337 eventi del Ferro 55, precedentemente filtrati.}
+    \label{fig:template_fononico}
+\end{figure}
