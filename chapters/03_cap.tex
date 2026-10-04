@@ -1,9 +1,10 @@
 \chapter{Costruzione dell'Optimum Filter e Caratterizzazione del Rumore}
 \label{ch:OF}
 
-Negli esperimenti di ricerca diretta di materia oscura come CRESST, la rivelazione di eventi rari e a bassissimo rilascio energetico impone di massimizzare il rapporto segnale-rumore (\textit{Signal-to-Noise Ratio}, SNR). Ottimizzare questo parametro consente di ridurre la soglia energetica del rivelatore ($E_{\text{th}}$), garantendo al tempo stesso un'elevata efficienza di selezione dei segnali fisici e un forte rigetto dei trigger spuri dovuti a fluttuazioni termiche ed elettroniche.
+Negli esperimenti di ricerca diretta di materia oscura come CRESST, la rivelazione di eventi rari e a bassissimo rilascio energetico impone di massimizzare il rapporto segnale-rumore (\textit{Signal-to-Noise Ratio}, SNR). Ottimizzare questo parametro consente di ridurre la soglia energetica del rivelatore ($E_{\text{th}}$), 
+permettendo di scegliere un valore tale che il numero di eventi triggerati dovuti a fluttuazioni elettroniche sia molto inferiore rispetto al numero di segnali dovuti ad eventi di interazione del rivelatore con una particella.
 
-Questo capitolo descrive il percorso adottato per il trattamento dei dati: dalla struttura dei campioni registrati alla formulazione teorica dell'\textit{Optimum Filter} (OF), fino alla determinazione dei suoi due elementi costitutivi — il \textit{Noise Power Spectrum} (NPS) e i template di forma d'onda. Infine (forse), viene presentata l'applicazione del filtro e il criterio di stima del tasso di rumore triggerato in funzione della soglia.
+In questo capitolo verrà descritto il percorso adottato per il trattamento dei dati: dalla struttura dei campioni registrati alla formulazione teorica dell'\textit{Optimum Filter} (OF), fino alla determinazione dei suoi due elementi costitutivi: il \textit{Noise Power Spectrum} (NPS) e i template di forma d'onda. Infine, viene presentata l'applicazione del filtro ad eventi di rumore e di particella, e il criterio di stima del tasso di rumore triggerato in funzione della soglia.
 
 % ==============================================================================
 \section{Struttura dei Dati e Parametrizzazione delle Tracce}
@@ -12,10 +13,10 @@ Questo capitolo descrive il percorso adottato per il trattamento dei dati: dalla
 
 Nell'esperimento CRESST i segnali vengono acquisiti in modalità continua a una frequenza di campionamento di $25\,\text{kHz}$, che corrisponde a un intervallo temporale tra due campioni consecutivi pari a $\Delta t = 40\,\mu\text{s}$. La registrazione continua consente di applicare algoritmi di filtraggio digitale direttamente sul flusso dati grezzo, per poi applicare in un secondo momento il trigger, riducendo l'impatto del rumore e migliorando la sensibilità sperimentale.
 
-Per monitorare la stabilità della risposta termica del rivelatore e verificarne costantemente il punto di lavoro lungo la transizione superconduttrice del TES (\textit{Transition Edge Sensor}), vengono iniettati periodicamente impulsi di calore artificiali per mezzo di un riscaldatore ohmico (\textit{heater}) integrato sull'assorbitore:
+Per monitorare la stabilità della risposta termica del rivelatore e verificarne costantemente il punto di lavoro lungo la transizione superconduttrice del TES (\textit{Transition Edge Sensor}), vengono iniettati periodicamente impulsi di calore artificiali per mezzo di una resistenza (\textit{heater}) localizzata molto vicina al cristallo:
 \begin{itemize}
     \item \textbf{TestPulses:} impulsi di calore ad ampiezza variabile programmata (tra $0.1\,\text{V}$ a $10\,\text{V}$ al generatore), impiegati per campionare linearità, guadagno e risoluzione energetica dell'apparato (Figura~\ref{fig:PulsesComparison}b);
-    \item \textbf{ControlPulses:} impulsi ad ampiezza fissa ed elevata ($20\,\text{V}$), progettati per portare il film di tungsteno oltre la transizione e saturare la risposta (Figura~\ref{fig:PulsesComparison}a). L'altezza del gradino di saturazione funge da riferimento stabile per correggere eventuali derive termiche del criostato. (Il controlpulse sembra avere stessa ampiezza dell'ultimo Testpulse nonostante ampiezza input registrata sia doppia!!!!)
+    \item \textbf{ControlPulses:} impulsi ad ampiezza fissa ed elevata ($20\,\text{V}$), progettati per portare il film di tungsteno oltre la transizione e saturare la risposta per correggere eventuali scostamenti dal punto di lavoro ideale (Figura~\ref{fig:PulsesComparison}a).
 \end{itemize}
 
 \begin{figure}[htbp]
@@ -38,7 +39,7 @@ Per monitorare la stabilità della risposta termica del rivelatore e verificarne
     \label{fig:PulsesComparison}
 \end{figure}
 
-Ogni evento isolato in fase di analisi corrisponde a una finestra temporale di $65536$ campioni (durata complessiva di circa $2.62\,\text{s}$). L'impulso viene convenzionalmente posizionato a un quarto della traccia, attorno al campione $16384$ ($\approx 655.4\,\text{ms}$). Questa asimmetria garantisce un intervallo pre-trigger sufficientemente lungo per stimare il livello e la varianza della linea di base (\textit{baseline}), lasciando al contempo il tempo necessario per registrare il completo rilassamento termico del sistema verso il bagno freddo.
+Ogni evento isolato in fase di analisi corrisponde a una finestra temporale di $65536$ campioni (durata complessiva di circa $2.62\,\text{s}$). L'impulso viene convenzionalmente posizionato a un quarto della traccia, attorno al campione $16384$ ($\approx 655.4\,\text{ms}$). Questa asimmetria garantisce un intervallo pre-trigger sufficientemente lungo per stimare il livello e la varianza della linea di base (\textit{baseline}), lasciando al contempo il tempo necessario per osservare il ritorno alle condizioni iniziali del rivelatore.
 
 Dalle tracce campionate vengono estratti diversi parametri operativi, riassunti nel seguente elenco e illustrati in Figura~\ref{fig:Parametri_particella}:
 \begin{itemize}
@@ -46,15 +47,15 @@ Dalle tracce campionate vengono estratti diversi parametri operativi, riassunti 
     \item \textbf{Baseline Slope:} pendenza lineare della baseline pre-trigger (unità di misura??);
     \item \textbf{Baseline RMS:} deviazione standard della tensione nella regione prima dell'evento;
     \item \textbf{Baseline Difference:} differenza tra la media della tensione prima dell'impulso e quella a fine finestra;
-    \item \textbf{Rise Time (RT):} tempo impiegato dal fronte di salita per passare dal $x\%$ al $x\%$ dell'altezza massima;
-    \item \textbf{Decay Time (DT):} tempo impiegato dalla coda del segnale per scendere dal $x\%$ al $x\%$ del picco;
+    \item \textbf{Rise Time (RT):} tempo impiegato dal fronte di salita per arrivare al $90\%$ dell'altezza massima;
+    \item \textbf{Decay Time (DT):} tempo impiegato dalla coda del segnale per scendere al $10\%$ del picco, partendo dalla peak position;
     \item \textbf{Peak Position:} coordinata temporale del massimo assoluto identificato lungo la finestra.
 \end{itemize}
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.95\textwidth]{figures/Parametri_particella.png}
-    \caption{Esempio di traccia di particella registrata nel cristallo (a sinistra) e relativa tabella dei parametri di forma calcolati (a destra). (Sistemare unità di misura!!!!)}
+    \caption{Esempio di traccia di particella registrata nel cristallo (a sinistra) e relativa tabella dei parametri di forma calcolati (a destra).}
     \label{fig:Parametri_particella}
 \end{figure}
 
@@ -65,7 +66,7 @@ Dalle tracce campionate vengono estratti diversi parametri operativi, riassunti 
 
 Il metodo più immediato per ricavare l'energia depositata da un'interazione consisterebbe nel campionare il valore massimo della traccia dopo aver rimosso l'offset della baseline. Tuttavia, in presenza di segnali di piccola ampiezza confrontabili con l'RMS del fondo, il massimo misurato tende a coincidere con la somma tra l'impulso reale e la più alta fluttuazione casuale positiva presente in quel punto. Questo effetto introduce una sovrastima sistematica dell'ampiezza.
 
-Per ovviare al problema si adotta l'\textit{Optimum Filter} (OF), sviluppato originariamente da Gatti e Manfredi ~\cite{gatti_manfredi}. L'algoritmo sfrutta il fatto che, in regime di risposta lineare del sensore, gli impulsi condividono una forma d'onda comune e differiscono unicamente per un fattore di scala proporzionale all'energia. Una traccia misurata $v(t)$, depurata dall'offset continuo, viene quindi modellata come:
+Per ovviare al problema si adotta l'\textit{Optimum Filter} (OF), sviluppato originariamente da Gatti e Manfredi~\cite{GattiManfredi1986}. L'algoritmo sfrutta il fatto che, in regime di risposta lineare del sensore, gli impulsi condividono una forma d'onda comune e differiscono unicamente per un fattore di scala proporzionale all'energia. Una traccia misurata $v(t)$, depurata dall'offset continuo, viene quindi modellata come:
 \begin{equation}
     v(t) = A \cdot s(t - t_0) + n(t)
     \label{eq:segnale_modello}
@@ -80,14 +81,14 @@ L'Optimum Filter opera nello spazio delle frequenze tramite una funzione di tras
 dove:
 \begin{itemize}
     \item $S^*(f)$ è il complesso coniugato della trasformata di Fourier del template $s(t)$, che pesa maggiormente le bande di frequenza in cui si concentra la potenza del segnale fisico;
-    \item $N(f)$ è la densità di potenza del rumore (\textit{Noise Power Spectrum}, NPS), che ha il compito di ridurre le frequenze dominate da disturbi sperimentali;
+    \item $N(f)$ è il \textit{Noise Power Spectrum} (NPS), che ha il compito di ridurre le frequenze dominate da disturbi sperimentali;
     \item $e^{-i 2\pi f t_0}$ compensa lo sfasamento temporale dell'evento lungo la traccia;
     \item $K$ è una costante reale di normalizzazione definita come:
     \begin{equation}
         K = \left( \int_{-\infty}^{+\infty} \frac{|S(f)|^2}{N(f)} \, df \right)^{-1}
         \label{eq:costante_normalizzazione}
     \end{equation}
-    Poiché i segnali sperimentali vengono acquisiti a tempo discreto su un intervallo finito di $N$ campioni, l'integrale viene valutato numericamente tramite sommatoria sui bin di frequenza discreti $f_k = k \cdot \Delta f$ (con $\Delta f = f_camp / N$). Sfruttando la proprietà per cui il modulo quadro della trasformata di Fourier di un segnale reale è una funzione pari rispetto all'origine ($|S(-f)|^2 = |S(f)|^2$), l'integrazione sulle frequenze negative si ripiega su quelle positive:
+    Poiché i segnali sperimentali vengono acquisiti a tempo discreto su un intervallo finito di $N$ campioni, l'integrale viene valutato numericamente tramite sommatoria sui bin di frequenza discreti $f_k = k \cdot \Delta f$ (con $\Delta f = f_{camp} / N$). Sfruttando la proprietà per cui il modulo quadro della trasformata di Fourier di un segnale reale è una funzione pari rispetto all'origine ($|S(-f)|^2 = |S(f)|^2$), l'integrazione sulle frequenze negative si ripiega su quelle positive:
     \begin{equation}
         K = \left[ \Delta f \left( \frac{|S(0)|^2}{N(0)} + 2 \sum_{k=1}^{N/2 - 1} \frac{|S(f_k)|^2}{N(f_k)} + \frac{|S(f_{\text{Nyq}})|^2}{N(f_{\text{Nyq}})} \right) \right]^{-1}
         \label{eq:costante_normalizzazione_discreta}
@@ -108,7 +109,7 @@ Il massimo di $v_{\text{filt}}(t)$ fornisce la stima ottimale dell'ampiezza cerc
 
 Per calcolare il denominatore della funzione di trasferimento dell'OF è necessario stimare sperimentalmente la densità spettrale $N(f)$ a partire da finestre temporali registrate in assenza di segnale fisico.
 
-Durante il funzionamento continuo, le inevitabili derive termiche a bassissima frequenza dell'apparato criogenico provocano variazioni della linea di base. Se una finestra di rumore presenta una deriva non nulla, i livelli di tensione all'inizio e alla fine risulteranno disallineati. Poiché la Trasformata Discreta di Fourier (DFT) tratta implicitamente il record come una sequenza periodica, il disallineamento tra i due estremi viene interpretato come una discontinuità a gradino. Tale gradino introduce una forte componente spuria a bassa frequenza, che distorce e sovrastima lo spettro del rumore, come illustrato in Figura~\ref{fig:gradino}.
+Durante il funzionamento continuo, la presenza di derive termiche provocano variazioni della linea di base. Se una finestra di rumore presenta una deriva non nulla, i livelli di tensione all'inizio e alla fine risulteranno disallineati. Poiché la Trasformata Discreta di Fourier (DFT) tratta implicitamente il record come una sequenza periodica, il disallineamento tra i due estremi viene interpretato come una discontinuità a gradino. Tale gradino introduce una forte componente spuria a bassa frequenza, che distorce e sovrastima lo spettro del rumore, come illustrato in Figura~\ref{fig:gradino}.
 
 \begin{figure}[htbp]
     \centering
@@ -121,10 +122,10 @@ Per selezionare esclusivamente tracce di rumore stazionarie, il campione inizial
 \begin{itemize}
     \item \textbf{Pulse Height $< 4\,\text{mV}$:} esclude piccoli impulsi fisici o transienti spuri sfuggiti al trigger;
     \item \textbf{Baseline Difference $< 0.5\,\text{mV}$:} rigetta eventi che contengono code termiche o fluttuazioni a gradino;
-    \item \textbf{Fit polinomiale di terzo grado:} la traccia viene modellata con un polinomio cubico. Si conservano solo gli eventi con coefficienti compresi tra il $10^\circ$ e il $90^\circ$ percentile della distribuzione, eliminando andamenti non lineari anomali.
+    \item \textbf{Fit polinomiale di terzo grado:} la traccia viene modellata tramite fit cubico minimizzando l'RMS e si conservano solo gli eventi con valore di RMS compreso tra il $10^\circ$ e il $90^\circ$ percentile della distribuzione, eliminando andamenti non lineari anomali.
 \end{itemize}
 
-Sulle tracce accettate si sottrae il fit cubico per rimuovere ogni pendenza residua (\textit{detrending}). Si calcola quindi la trasformata $V_i(f)$ per ciascuna delle $M$ tracce selezionate e si valuta la Densità Spettrale di Potenza a frequenze positive:
+Sulle tracce accettate si sottrae il fit cubico per rimuovere ogni pendenza residua. Si calcola quindi la trasformata $V_i(f)$ per ciascuna delle $M$ tracce selezionate e si valuta la Densità Spettrale di Potenza a frequenze positive:
 \begin{equation}
     N(f) = \frac{2}{N f_s} \frac{1}{M} \sum_{i=1}^{M} |V_i(f)|^2
 \end{equation}
@@ -137,7 +138,7 @@ dove $N = 65536$ è il numero di campioni, $f_s = 25\,\text{kHz}$ è la frequenz
     \label{fig:NPS}
 \end{figure}
 
-Lo spettro finale (Figura~\ref{fig:NPS}) evidenzia chiaramente i contributi del rumore di fondo: oltre a una componente continua a bassa frequenza, emergono il picco fondamentale della rete a $50\,\text{Hz}$ e le relative armoniche dispari ($150\,\text{Hz}$ e $250\,\text{Hz}$), dovute a captazioni elettromagnetiche e ground loop. Inserito a denominatore nella funzione di trasferimento $H(f)$, $N(f)$ smorza selettivamente queste frequenze, eliminando le interferenze periodiche dalla stima dell'ampiezza.
+Lo spettro finale (Figura~\ref{fig:NPS}) evidenzia chiaramente i contributi del rumore di fondo: oltre a una componente continua a bassa frequenza, emergono il picco fondamentale della rete a $50\,\text{Hz}$ e le relative armoniche dispari ($150\,\text{Hz}$ e $250\,\text{Hz}$). Inserito a denominatore nella funzione di trasferimento $H(f)$, il NPS smorza selettivamente queste frequenze.
 
 % ==============================================================================
 \section{Costruzione dei Template di Segnale}
@@ -147,14 +148,14 @@ Lo spettro finale (Figura~\ref{fig:NPS}) evidenzia chiaramente i contributi del 
 Il numeratore dell'Optimum Filter richiede la conoscenza della forma d'onda di riferimento $s(t)$ (\ref{eq:segnale_modello}). Poiché i canali di eccitazione del rivelatore sono due, particelle ionizzanti che interagiscono nel volume del cristallo e impulsi termici iniettati sull'heater, è necessario definire due template separati.
 
 % ------------------------------------------------------------------------------
-\subsection{Template Fononico per Eventi Fisici}
+\subsection{Template Fononico per Eventi di Particella}
 \label{subsec:template_fononico}
 
-Per ricavare il template del segnale particellare, l'obiettivo è mediare un insieme numericamente consistente di tracce pulite, in modo da cancellare il rumore stocastico e isolare la dinamica termica pura. 
+Per ricavare il template del segnale particellare, il procedimento è il medesimo di quello utilizzato per costruire il NPS: mediare un insieme numericamente consistente di tracce pulite, in modo da cancellare il rumore stocastico e ottenere la forma d'onda che meglio rispecchia l'interazione del rivelatore con una particella.
 
-A questo scopo sono stati selezionati eventi prodotti da una sorgente esterna di calibrazione di $^{55}\text{Fe}$. Il decadimento per cattura elettronica del $^{55}\text{Fe}$ genera raggi X caratteristici a circa $5.9\,\text{keV}$ ($K_\alpha$) e $6.4\,\text{keV}$ ($K_\beta$). Questa energia è ideale: è sufficientemente elevata da emergere nettamente dal rumore di fondo, ma abbastanza contenuta da non saturare il sensore TES, garantendo una risposta strettamente lineare.
+A questo scopo sono stati selezionati eventi prodotti da una sorgente esterna di calibrazione di $^{55}\text{Fe}$. Il decadimento per cattura elettronica del $^{55}\text{Fe}$ genera raggi X caratteristici a  $5.89\,\text{keV}$ ($K_\alpha$) e $6.49\,\text{keV}$ ($K_\beta$). Questa energia è ideale: è sufficientemente elevata da emergere nettamente dal rumore di fondo, ma abbastanza contenuta da non saturare il sensore TES, garantendo una risposta strettamente lineare.
 
-Gli eventi vengono selezionati richiedendo una \textit{pulse height} preliminare compresa tra $0.8\,\text{V}$ e $0.9\,\text{V}$ (intervallo corrispondente al picco del ferro), assenza di derivate negative anomale (generate da disturbi dell'elettronica) e stabilità della linea di base.
+Gli eventi vengono selezionati richiedendo una \textit{pulse height} preliminare compresa tra $0.8\,\text{V}$ e $0.9\,\text{V}$ (intervallo corrispondente al picco del ferro), assenza di derivate negative anomale (generate da disturbi dell'elettronica) e stabilità della linea di base (\ref{fig:eventi_rigettati}).
 
 \begin{figure}[htbp]
     \centering
@@ -165,7 +166,13 @@ Gli eventi vengono selezionati richiedendo una \textit{pulse height} preliminare
 
 Tuttavia, questi tagli standard non sono in grado di intercettare i casi di \textit{pile-up}, in cui una seconda interazione avviene nella stessa finestra temporale senza alterare drasticamente la baseline finale. La presenza di un secondo picco altererebbe la forma media del template, compromettendo il calcolo dell'OF.
 
-Per riconoscere ed eliminare questi eventi si impiega il \textbf{filtro di Savitzky-Golay}, un algoritmo che interpola localmente i punti con un polinomio di terzo grado, restituendo una traccia liscia. In particolare il polinomio è stato preso fittando 501 samples, 250 prima e 250 dopo il punto considerato. In seguito è stato preso il coefficiente costante del polinomio. Tale operazione è stata iterata per tutti i punti della finestra, ottenendo una forma d'onda in cui è stato abbattuto il rumore ad alta frequenza ma preservata la cuspide dell'impulso.
+Per riconoscere ed eliminare questi eventi si impiega il \textbf{filtro di Savitzky-Golay}~\cite{SavitzkyGolay1964}, un algoritmo che interpola localmente i punti con un polinomio di terzo grado, restituendo una traccia liscia. In particolare il polinomio in ogni punto è preso fittando 501 samples, 250 prima e 250 dopo il punto considerato. In seguito è stato preso il coefficiente costante del polinomio. Tale operazione è stata iterata per tutti i punti della finestra, ottenendo una forma d'onda in cui è stato abbattuto il rumore ad alta frequenza ma preservata la cuspide dell'impulso.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.6\textwidth]{figures/Esempio_Savitzky_Golay.png}
+    \caption{Identificazione del pile-up tramite Savitzky-Golay: la curva smussata (in rosso) permette all'algoritmo di intercettare il secondo massimo locale ed escludere la traccia dal calcolo del template.}
+    \label{fig:evento_rigettato_pileup}
+\end{figure}
 Sulla curva smussata viene applicato un algoritmo di ricerca dei massimi con due condizioni:
 \begin{itemize}
     \item \textbf{Separazione temporale:} distanza minima tra picchi di $60\,\text{ms}$;
@@ -174,18 +181,11 @@ Sulla curva smussata viene applicato un algoritmo di ricerca dei massimi con due
 Tale algoritmo non potrebbe essere applicato alla traccia grezza poiché intercetterebbe tutti i picchi dovuti alle fluttuazioni stocastiche del rumore.
 Le tracce che manifestano più di un massimo valido vengono classificate come pile-up e scartate (Figura~\ref{fig:evento_rigettato_pileup}).
 
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.88\textwidth]{figures/Esempio_Savitzky_Golay.png}
-    \caption{Identificazione del pile-up tramite Savitzky-Golay: la curva smussata (in rosso) permette all'algoritmo di intercettare il secondo massimo locale ed escludere la traccia dal calcolo del template.}
-    \label{fig:evento_rigettato_pileup}
-\end{figure}
-
 Mediando $337$ eventi di $^{55}\text{Fe}$ sopravvissuti ai tagli e normalizzando l'ampiezza al valore massimo unitario si ottiene il template fononico $s(t)$ (Figura~\ref{fig:confronto_templates}) e il corrispondente spettro di Fourier $S(f)$ (Figura~\ref{fig:FT_impulso_scremato}).
 
 \begin{figure}[htbp]
         \centering
-        \includegraphics[width=0.85\linewidth]{figures/FT_impulso_scremato.png}
+        \includegraphics[width=0.7\linewidth]{figures/FT_impulso_scremato.png}
         \caption{Spettro di Fourier $S(f)$ del template fononico.}
         \label{fig:FT_impulso_scremato}
 \end{figure}
@@ -194,7 +194,7 @@ Mediando $337$ eventi di $^{55}\text{Fe}$ sopravvissuti ai tagli e normalizzando
 \subsection{Template dei TestPulses e Confronto Morfologico}
 \label{subsec:template_testpulse}
 
-La risposta termica del rivelatore a un impulso di calore iniettato nell'heater non è del tutto identica a quella generata da una particella che colpisce il volume del cristallo. Sebbene entrambi i processi producano fononi termici, l'iniezione tramite heater avviene localmente sulla superficie e presenta una cinetica di diffusione leggermente differente.
+La risposta termica del rivelatore a un impulso di calore iniettato nell'heater non è del tutto identica a quella generata da una particella che colpisce il volume del cristallo. 
 
 Come illustrato nel confronto di Figura~\ref{fig:confronto_templates}, il TestPulse mostra un fronte di salita più dolce e un tempo di decadimento leggermente diverso rispetto all'impulso da particella. Per calibrare accuratamente i TestPulses senza introdurre disallineamenti di forma, è indispensabile costruire un template dedicato anche per essi.
 
@@ -205,7 +205,7 @@ Come illustrato nel confronto di Figura~\ref{fig:confronto_templates}, il TestPu
     \label{fig:confronto_templates}
 \end{figure}
 
-La procedura adottata per i TestPulses ricalca quella appena descritta: si selezionano impulsi non saturi generati a tensione costante ($V_{\text{inj}} = 1\,\text{V}$), si applicano i filtri su stabilità di baseline, assenza di pile-up e planarità della coda finale, e si media l'insieme delle tracce accettate normalizzando il picco a $1$.
+La procedura adottata per i TestPulses ricalca quella appena descritta: si selezionano impulsi non saturi generati a tensione costante ($V_{\text{inj}} = 1\,\text{V}$), si applicano i filtri su stabilità di baseline, assenza di pile-up e di spike negative, e si media l'insieme delle tracce accettate normalizzando il picco a $1$.
 
 % ==============================================================================
 \section{Implementazione dell'Optimum Filter e Risultati}
@@ -236,9 +236,61 @@ Un esempio di applicazione su un impulso di piccola ampiezza ($V_{\text{inj}} = 
     \label{fig:ricostruzione_TP}
 \end{figure}
 
+
 % ==============================================================================
-\section{Rumore Residuo e Determinazione della Soglia di Trigger}
+\section{Determinazione della Soglia Operativa ed Efficienza di Trigger}
 \label{sec:trigger_noise}
 % ==============================================================================
 
-to be continue...
+Uno degli aspetti cardine nell'analisi dei dati di un esperimento per la ricerca di materia oscura è la definizione della soglia di trigger software. In CRESST, dove l'obiettivo primario è massimizzare la sensibilità a particelle leggere nella regione sub-keV, la soglia deve essere impostata al valore più basso possibile compatibilmente con il rumore di fondo. Una scelta inadeguata comporta due rischi contrapposti:
+\begin{itemize}
+    \item una soglia eccessivamente bassa determina un tasso insostenibile di trigger spuri, che contaminano l'insieme di dati scientifici con fluttuazioni stocastiche di baseline;
+    \item una soglia troppo conservativa azzera il rumore ma innalza la soglia energetica effettiva ($E_{\text{th}}$), tagliando fuori la frazione più rilevante dello spazio delle fasi atteso per i candidati di materia oscura.
+\end{itemize}
+
+Per quantificare rigorosamente questo compromesso, l'Optimum Filter (preceduto da un detrending polinomiale di terzo grado e dall'applicazione di una finestra di Tukey per eliminare salti di discontinuità ai bordi) è stato applicato a tutte le finestre di rumore puro estratte dai run di background. Valutando il massimo assoluto dell'ampiezza filtrata su ciascuna traccia, è stata calcolata la frazione di eventi di rumore che supera una generica soglia $V_{\text{th}}$, producendo la curva riportata in Figura~\ref{fig:Falsi_trigger}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.85\textwidth]{figures/Curva_Falsi_Trigger.png}
+    \caption{Percentuale di eventi di rumore puro che superano la soglia di trigger in funzione di $V_{\text{th}}$ (in scala semilogaritmica). Sono evidenziati i valori di soglia corrispondenti a tassi di accettazione spuria del $10\%$ ($V_{\text{th}} = 4.453\,\text{mV}$), dell'$1\%$ ($V_{\text{th}} = 5.133\,\text{mV}$) e dello $0.1\%$ ($V_{\text{th}} = 6.026\,\text{mV}$).}
+    \label{fig:Falsi_trigger}
+\end{figure}
+
+Dalla curva di Figura~\ref{fig:Falsi_trigger} sono stati individuati tre scenari di riferimento, corrispondenti rispettivamente a un tasso di falsi trigger del $10\%$, dell'$1\%$ e dello $0.1\%$:
+\begin{equation}
+    V_{\text{th}}^{(10\%)} = 4.453\,\text{mV}, \quad 
+    V_{\text{th}}^{(1\%)} = 5.133\,\text{mV}, \quad 
+    V_{\text{th}}^{(0.1\%)} = 6.026\,\text{mV}.
+\end{equation}
+
+Per comprendere l'impatto di ciascuna soglia sulla capacità di registrare eventi fisici reali, è stata successivamente studiata l'efficienza di rivelazione tramite simulazioni di interazione su tracce di rumore reale. 
+
+A un campione di 1000 tracce di rumore pulito sono stati sovrapposti impulsi generati a partire dal template ($s(t)$). L'ampiezza iniettata $A_{\text{inj}}$ è stata scansionata progressivamente da $0.0\,\text{mV}$ a $9\,\text{mV}$. Ciascun impulso è stato centrato convenzionalmente a un quarto della finestra di acquisizione ($t_0 \approx 655.36\,\text{ms}$). Su ogni traccia simulata è stata ripetuta la catena standard di pre-trattamento (detrending cubico e finestra di Tukey) seguita dal filtraggio con l'Optimum Filter.
+
+Un evento simulato viene classificato come correttamente triggerato se e solo se soddisfa simultaneamente due criteri:
+\begin{enumerate}
+    \item \textbf{Criterio di ampiezza:} l'altezza del massimo assoluto ricostruito dall'OF supera la soglia, $\hat{A} \ge V_{\text{th}}$, dove $\hat{A}$ corrisponde al valore di massima ampiezza valutato sul campione filtrato;
+    \item \textbf{Criterio temporale:} l'istante temporale in cui si verifica il picco filtrato cade all'interno di una finestra di tolleranza ristretta attorno alla posizione reale di iniezione:
+    \begin{equation}
+        |t_{\text{picco}} - t_0| \le 15\,\text{ms}.
+    \end{equation}
+\end{enumerate}
+Il secondo vincolo è essenziale: se il picco dell'OF supera la soglia in un istante temporale distante da $t_0$, il trigger è imputabile a una fluttuazione statistica del rumore di fondo e non alla particella iniettata, costituendo un falso positivo.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.85\textwidth]{figures/Curva_efficienza_trigger.png}
+    \caption{Curva di efficienza di trigger in funzione dell'ampiezza dell'impulso iniettato per le tre soglie operative investigate.}
+    \label{fig:Efficienza_trigger}
+\end{figure}
+
+Le curve di efficienza risultanti (Figura~\ref{fig:Efficienza_trigger}) presentano il caratteristico andamento a sigmoide.
+
+Il confronto combinato tra le Figure~\ref{fig:Falsi_trigger} e \ref{fig:Efficienza_trigger} consente di stabilire la soglia ottimale:
+\begin{itemize}
+    \item la soglia al $10\%$ di trigger spuri ($4.453\,\text{mV}$) garantisce un plateau di efficienza al $100\%$ già a partire da circa $6.5\,\text{mV}$, ma introduce un tasso di eventi spuri non trascurabile durante le lunghe esposizioni scientifiche;
+    \item la soglia allo $0.1\%$ ($6.026\,\text{mV}$) sopprime quasi totalmente il rumore di fondo, ma sposta la piena efficienza oltre gli $8\,\text{mV}$, penalizzando l'indagine a basse energie;
+    \item la configurazione intermedia con soglia all'$1\%$ ($V_{\text{th}} = 5.133\,\text{mV} \approx 37\,\text{eV}
+    $) rappresenta un ottimo compromesso: si raggiunge la piena efficienza ($>98\%$) già attorno a $7\,\text{mV}$ pur mantenendo i falsi allarmi a un livello agevolmente gestibile.
+\end{itemize}

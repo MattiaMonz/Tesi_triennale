@@ -1,0 +1,242 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global/global}
+    \entry{chandra_bullet_2006}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=3ebe1947ae75f75af83450da7e92ebc1}{%
+           family={{Chandra X-ray Observatory}},
+           familyi={C\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {Harvard-Smithsonian Center for Astrophysics}%
+      }
+      \strng{namehash}{3ebe1947ae75f75af83450da7e92ebc1}
+      \strng{fullhash}{3ebe1947ae75f75af83450da7e92ebc1}
+      \strng{fullhashraw}{3ebe1947ae75f75af83450da7e92ebc1}
+      \strng{bibnamehash}{3ebe1947ae75f75af83450da7e92ebc1}
+      \strng{authorbibnamehash}{3ebe1947ae75f75af83450da7e92ebc1}
+      \strng{authornamehash}{3ebe1947ae75f75af83450da7e92ebc1}
+      \strng{authorfullhash}{3ebe1947ae75f75af83450da7e92ebc1}
+      \strng{authorfullhashraw}{3ebe1947ae75f75af83450da7e92ebc1}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{8}
+      \field{title}{1E 0657-56: {NASA} Finds Direct Proof of Dark Matter (More Information)}
+      \field{year}{2006}
+      \field{dateera}{ce}
+      \verb{urlraw}
+      \verb https://chandra.harvard.edu/photo/2006/1e0657/more.html
+      \endverb
+      \verb{url}
+      \verb https://chandra.harvard.edu/photo/2006/1e0657/more.html
+      \endverb
+    \endentry
+    \entry{Souradeep2006AngularPS}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=ccff1079f56d826a34866eb57b3a0e0f}{%
+           family={Souradeep},
+           familyi={S\bibinitperiod},
+           given={Tarun},
+           giveni={T\bibinitperiod}}}%
+        {{hash=66155a3860bf1934481263ac2f85ff50}{%
+           family={Saha},
+           familyi={S\bibinitperiod},
+           given={Rajib},
+           giveni={R\bibinitperiod}}}%
+        {{hash=595164930d298791b413782ccd130679}{%
+           family={Jain},
+           familyi={J\bibinitperiod},
+           given={Pankaj},
+           giveni={P\bibinitperiod}}}%
+      }
+      \strng{namehash}{ee0a47bb0226e0cbd30fb424da24fde0}
+      \strng{fullhash}{ee0a47bb0226e0cbd30fb424da24fde0}
+      \strng{fullhashraw}{ee0a47bb0226e0cbd30fb424da24fde0}
+      \strng{bibnamehash}{ee0a47bb0226e0cbd30fb424da24fde0}
+      \strng{authorbibnamehash}{ee0a47bb0226e0cbd30fb424da24fde0}
+      \strng{authornamehash}{ee0a47bb0226e0cbd30fb424da24fde0}
+      \strng{authorfullhash}{ee0a47bb0226e0cbd30fb424da24fde0}
+      \strng{authorfullhashraw}{ee0a47bb0226e0cbd30fb424da24fde0}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprinttype}{arxiv}
+      \field{journaltitle}{New Astronomy Reviews}
+      \field{title}{Angular power spectrum of {CMB} anisotropy from {WMAP}}
+      \field{year}{2006}
+      \verb{eprint}
+      \verb astro-ph/0608199
+      \endverb
+    \endentry
+    \entry{Planck2018Overview}{article}{}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{3}{}{%
+        {{hash=2200c6700aaddecd6aea88dedad48756}{%
+           family={{Planck Collaboration}},
+           familyi={P\bibinitperiod}}}%
+        {{hash=d91642f8860c0fba4e2de1e05b45c449}{%
+           family={Akrami},
+           familyi={A\bibinitperiod},
+           given={Y.},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=7137e8418d9673d0706e88fba2b843b3}{%
+           family={Ashdown},
+           familyi={A\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{687eab69c4facea31830f46167f9b676}
+      \strng{fullhash}{687eab69c4facea31830f46167f9b676}
+      \strng{fullhashraw}{687eab69c4facea31830f46167f9b676}
+      \strng{bibnamehash}{687eab69c4facea31830f46167f9b676}
+      \strng{authorbibnamehash}{687eab69c4facea31830f46167f9b676}
+      \strng{authornamehash}{687eab69c4facea31830f46167f9b676}
+      \strng{authorfullhash}{687eab69c4facea31830f46167f9b676}
+      \strng{authorfullhashraw}{687eab69c4facea31830f46167f9b676}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Astronomy \& Astrophysics}
+      \field{title}{{Planck} 2018 results. {I}. {Overview} and the cosmological legacy of {Planck}}
+      \field{year}{2020}
+      \verb{doi}
+      \verb 10.1051/0004-6361/201833880
+      \endverb
+    \endentry
+    \entry{Dev2014ConstrainingNT}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=58c5e25ee476499fd386dd1bcddbf0a8}{%
+           family={Dev},
+           familyi={D\bibinitperiod},
+           given={P.\bibnamedelimi S.\bibnamedelimi Bhupal},
+           giveni={P\bibinitperiod\bibinitdelim S\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+        {{hash=8c632485ae0336b4d3fb34bca13e0679}{%
+           family={Mazumdar},
+           familyi={M\bibinitperiod},
+           given={Anupam},
+           giveni={A\bibinitperiod}}}%
+        {{hash=79c558de5260edca203ea4a8057ed101}{%
+           family={Qutub},
+           familyi={Q\bibinitperiod},
+           given={Saleh},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{896c0d0ceb4badde68c30e6698ac67e6}
+      \strng{fullhash}{896c0d0ceb4badde68c30e6698ac67e6}
+      \strng{fullhashraw}{896c0d0ceb4badde68c30e6698ac67e6}
+      \strng{bibnamehash}{896c0d0ceb4badde68c30e6698ac67e6}
+      \strng{authorbibnamehash}{896c0d0ceb4badde68c30e6698ac67e6}
+      \strng{authornamehash}{896c0d0ceb4badde68c30e6698ac67e6}
+      \strng{authorfullhash}{896c0d0ceb4badde68c30e6698ac67e6}
+      \strng{authorfullhashraw}{896c0d0ceb4badde68c30e6698ac67e6}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprinttype}{arxiv}
+      \field{journaltitle}{Frontiers in Physics}
+      \field{title}{Constraining non-thermal and thermal properties of {Dark} {Matter}}
+      \field{volume}{2}
+      \field{year}{2014}
+      \field{pages}{26}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.3389/fphy.2014.00026
+      \endverb
+      \verb{eprint}
+      \verb 1311.5297
+      \endverb
+    \endentry
+    \entry{cresst_detectors_2026}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=be6995acba99e3e667a5185eba8babf6}{%
+           family={{CRESST Collaboration}},
+           familyi={C\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {Max Planck Institute for Physics}%
+      }
+      \strng{namehash}{be6995acba99e3e667a5185eba8babf6}
+      \strng{fullhash}{be6995acba99e3e667a5185eba8babf6}
+      \strng{fullhashraw}{be6995acba99e3e667a5185eba8babf6}
+      \strng{bibnamehash}{be6995acba99e3e667a5185eba8babf6}
+      \strng{authorbibnamehash}{be6995acba99e3e667a5185eba8babf6}
+      \strng{authornamehash}{be6995acba99e3e667a5185eba8babf6}
+      \strng{authorfullhash}{be6995acba99e3e667a5185eba8babf6}
+      \strng{authorfullhashraw}{be6995acba99e3e667a5185eba8babf6}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{The {CRESST} Experiment: {CRESST} Detectors}
+      \field{year}{2026}
+      \verb{urlraw}
+      \verb https://cresst-experiment.org/the-cresst-experiment/cresst-detectors
+      \endverb
+      \verb{url}
+      \verb https://cresst-experiment.org/the-cresst-experiment/cresst-detectors
+      \endverb
+    \endentry
+    \entry{GattiManfredi1986}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=0c8a696b74b1304ac0fad00c511da67b}{%
+           family={Gatti},
+           familyi={G\bibinitperiod},
+           given={Emilio},
+           giveni={E\bibinitperiod}}}%
+        {{hash=38df5c9e9c456147b3fcf4b49e901472}{%
+           family={Manfredi},
+           familyi={M\bibinitperiod},
+           given={Pier\bibnamedelima Francesco},
+           giveni={P\bibinitperiod\bibinitdelim F\bibinitperiod}}}%
+      }
+      \strng{namehash}{80db50ba6ac7530b25a9f2b3fbbe18e3}
+      \strng{fullhash}{80db50ba6ac7530b25a9f2b3fbbe18e3}
+      \strng{fullhashraw}{80db50ba6ac7530b25a9f2b3fbbe18e3}
+      \strng{bibnamehash}{80db50ba6ac7530b25a9f2b3fbbe18e3}
+      \strng{authorbibnamehash}{80db50ba6ac7530b25a9f2b3fbbe18e3}
+      \strng{authornamehash}{80db50ba6ac7530b25a9f2b3fbbe18e3}
+      \strng{authorfullhash}{80db50ba6ac7530b25a9f2b3fbbe18e3}
+      \strng{authorfullhashraw}{80db50ba6ac7530b25a9f2b3fbbe18e3}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{La Rivista del Nuovo Cimento}
+      \field{number}{1}
+      \field{title}{Processing the signals from solid-state detectors in elementary-particle physics}
+      \field{volume}{9}
+      \field{year}{1986}
+      \field{pages}{1\bibrangedash 146}
+      \range{pages}{146}
+      \verb{doi}
+      \verb 10.1007/BF02822156
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

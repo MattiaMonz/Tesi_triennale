@@ -2,7 +2,7 @@
 \label{ch:CRESST}
 
 L'esperimento CRESST (Cryogenic Rare Event Search with Superconducting Thermometers) è una collaborazione internazionale finalizzata alla ricerca diretta di WIMPs nella regione delle basse masse ($ \leq 1 \text{ GeV}$). L'apparato sperimentale è situato presso i Laboratori Nazionali del Gran Sasso (LNGS) dell'INFN in Italia.
-La collocazione sotto 1400 metri di roccia permette di schermare efficacemente il flusso di muoni cosmici.
+La collocazione sotto ad almeno 1400 metri di roccia permette di schermare efficacemente il flusso di muoni cosmici.
 
 Per identificare i rari e infinitesimi depositi di energia rilasciati dall'interazione delle WIMP con i nuclei del bersaglio, CRESST impiega rivelatori criogenici a stato solido portati a temperature dell'ordine dei millikelvin (10 mK), prossime allo zero assoluto. Tramite questo processo, che permette di ridurre al minimo il rumore termico di fondo, diventa possibile misurare i minuscoli innalzamenti di temperatura causati dai rinculi nucleari e spingere la soglia di rivelazione energetica a livelli tra i più bassi al mondo, aprendo una finestra osservativa cruciale sulla materia oscura di massa leggera.
 
@@ -34,11 +34,11 @@ La straordinaria sensibilità energetica dell'esperimento CRESST, capace di regi
 
 Il TES è un termometro criogenico costituito da una sottile striscia di materiale superconduttore (tipicamente tungsteno) depositato direttamente sulla superficie del cristallo bersaglio e del rivelatore di luce. Il principio di funzionamento sfrutta l'estrema dipendenza della resistenza elettrica dalla temperatura nella stretta regione di transizione tra lo stato normale e lo stato superconduttore.
 
-Mantenendo il sistema a una temperatura di lavoro $T_0$ stabilizzata esattamente al centro di questa curva di transizione, il TES presenta una resistenza parziale. Quando un fonone generato nel cristallo lo colpisce, cede la sua energia causando un microscopico incremento di temperatura $\Delta T$. Poiché la curva della resistenza del TES è estremamente ripida in questa regione, anche un aumento di temperatura dell'ordine di pochi millikelvin provoca un cambiamento significativo della resistenza $\Delta R$ del sensore, come illustrato in Figura \ref{fig:tes_curve}.
+Mantenendo il sistema a una temperatura di lavoro $T_0$ stabilizzata esattamente al centro di questa curva di transizione, quando un fonone generato nel cristallo colpisce il TES, cede la sua energia causando un microscopico incremento di temperatura $\Delta T$. Poiché la curva della resistenza del TES è estremamente ripida in questa regione, anche un aumento di temperatura dell'ordine di pochi millikelvin provoca un cambiamento significativo della resistenza $\Delta R$ del sensore, come illustrato in Figura \ref{fig:tes_curve}.
 \begin{figure}
     \centering
     \includegraphics[width=0.7\textwidth]{figures/curva_transizione.png}
-    \caption{Curva di transizione del TES. La resistenza viene mantenuta a metà della curva, così da poter passare rapidamente dallo stato superconduttore allo stato normale in un intervallo di temperatura molto ristretto.}
+    \caption{Curva di transizione del TES. Il punto di lavoro viene mantenuto a metà della curva, così da poter passare rapidamente dallo stato superconduttore allo stato normale in un intervallo di temperatura molto ristretto.}
     \label{fig:tes_curve}
 \end{figure}
 
@@ -71,7 +71,7 @@ Lo SQUID converte questo infinitesimo flusso magnetico in una variazione di tens
 \subsection{Il sistema di refrigerazione: il criostato a diluizione}
 \label{subsec:criostato}
 
-Per mantenere i moduli rivelatori, i TES e gli SQUID alla temperatura di lavoro millikelvin ($10\text{ mK}$) richiesta dall'esperimento, è necessario un sistema di refrigerazione sofisticato, capace di abbattere la temperatura di oltre cinque ordini di grandezza rispetto all'ambiente esterno. Questo compito è affidato a un criostato a diluizione di idrossido di elio ($^3\text{He}/^4\text{He}$), che opera attraverso una serie di stadi di raffreddamento progressivi:
+Per mantenere i moduli rivelatori, i TES e gli SQUID alla temperatura di lavoro millikelvin ($10\text{ mK}$) richiesta dall'esperimento, è necessario un sistema di refrigerazione sofisticato, capace di abbattere la temperatura di oltre cinque ordini di grandezza rispetto all'ambiente esterno. Questo compito è affidato a un criostato a diluizione, costituito da una miscela di $^3\text{He}/^4\text{He}$, che opera attraverso una serie di stadi di raffreddamento progressivi:
 
 \begin{enumerate}
     \item \textbf{Primo stadio (Pre-raffreddamento a $\sim 77\text{ K}$):} Il primo abbattimento termico massivo sfrutta il potere refrigerante dell'azoto liquido. Questo stadio riduce la temperatura del nucleo interno del criostato da temperatura ambiente fino a circa $77\text{ K}$ (temperatura di ebollizione dell'azoto), fungendo al contempo da prima barriera termica contro l'irraggiamento esterno.
@@ -122,7 +122,7 @@ L'apparato sperimentale di CRESST è protetto da un sistema di schermatura a pi�
 
 In particolare l'articolata successione di scudi passivi, rappresentata in Figura \ref{fig:shielding}, dall'esterno all'interno consta di:
 
-\begin{wrapfigure}{r}{0.45\textwidth}
+\begin{wrapfigure}{r}{0.5\textwidth}
     \centering
     \vspace{-20pt} % Riduce lo spazio bianco sopra la figura per allinearla al testo
     \includegraphics[width=0.42\textwidth]{figures/Schematic-cross-section-of-the-CRESST-setup-27-showing-the-structure-of-the-cryostat.ppm.png}
@@ -139,4 +139,4 @@ In particolare l'articolata successione di scudi passivi, rappresentata in Figur
 
 Inoltre, in Figura \ref{fig:shielding} è rappresentato uno spessore viola associato al termine "muon veto". Questo scudo rappresenta l'ultimo metodo (attivo) di schermaggio contro i muoni cosmici residui. Essendo sotto \SI{1400}{\metre} di roccia, il flusso di muoni cosmici è ridotto di circa sei ordini di grandezza rispetto alla superficie terrestre, raggiungendo un valore di $1$ muone al metro quadro ogni ora, che rischierebbe di contaminare eccessivamente il segnale di materia oscura. 
 
-Per questo motivo viene installato un sistema di scintillatori plastici che, colpiti da un muone, si eccitano, per poi tornare allo stato fondamentale emettendo fotoni di scintillazione, raccolti da tubi fotomoltiplicatori. Quando i fotomoltiplicatori registrano il passaggio di un muone e viene contemporaneamente rilevato un evento nel cristallo, esso viene scartato, poiché non dovuto a materia oscura.
+Per questo motivo quando i tubi fotomoltiplicatori registrano il passaggio di un muone e viene contemporaneamente rilevato un evento nel cristallo, esso viene scartato, poiché non dovuto a materia oscura.
