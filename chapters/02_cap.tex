@@ -1,24 +1,24 @@
 \chapter{L'esperimento CRESST}
 \label{ch:CRESST}
 
-L'esperimento CRESST (Cryogenic Rare Event Search with Superconducting Thermometers) è una collaborazione internazionale finalizzata alla ricerca diretta di WIMPs nella regione delle basse masse ($ \leq 1 \text{ GeV}$). L'apparato sperimentale è situato presso i Laboratori Nazionali del Gran Sasso (LNGS) dell'INFN in Italia.
+CRESST (Cryogenic Rare Event Search with Superconducting Thermometers) è una collaborazione internazionale finalizzata alla ricerca diretta di WIMPs nella regione delle basse masse ($ \leq 1 \text{ GeV}$). L'apparato sperimentale è situato presso i Laboratori Nazionali del Gran Sasso (LNGS) dell'INFN in Italia.
 La collocazione sotto ad almeno 1400 metri di roccia permette di schermare efficacemente il flusso di muoni cosmici.
 
-Per identificare i rari e infinitesimi depositi di energia rilasciati dall'interazione delle WIMP con i nuclei del bersaglio, CRESST impiega rivelatori criogenici a stato solido portati a temperature dell'ordine dei millikelvin (10 mK), prossime allo zero assoluto. Tramite questo processo, che permette di ridurre al minimo il rumore termico di fondo, diventa possibile misurare i minuscoli innalzamenti di temperatura causati dai rinculi nucleari e spingere la soglia di rivelazione energetica a livelli tra i più bassi al mondo, aprendo una finestra osservativa cruciale sulla materia oscura di massa leggera.
+Per identificare i rari e infinitesimi depositi di energia rilasciati dall'interazione delle WIMP con i nuclei del bersaglio, CRESST impiega rivelatori criogenici a stato solido portati a temperature dell'ordine dei millikelvin (10 mK), prossime allo zero assoluto. Tramite questo processo, che permette di ridurre al minimo il rumore termico di fondo, diventa possibile misurare i minuscoli innalzamenti di temperatura causati dai rinculi nucleari e spingere la soglia di rivelazione energetica a livelli tra i più bassi al mondo, aprendo una finestra osservativa cruciale sulla materia oscura leggera.
 
 \section{Il principio di rivelazione: il doppio canale}
 \label{sec:doppio_canale}
 
-Il cuore tecnologico dell'esperimento CRESST risiede nell'utilizzo di target cristallini scintillanti operati come calorimetri criogenici a bassissima temperatura. La scelta del materiale riflette la necessità di massimizzare la sezione d'urto di interazione con le WIMP (\ref{subsec:rate_sezionedurto}) e, al contempo, di disporre di un eccellente mezzo di scintillazione; per queste ragioni, i moduli rivelatori standard di CRESST-III impiegano cristalli di tungstato di calcio ($\text{CaWO}_4$). 
+Il cuore tecnologico dell'esperimento CRESST risiede nell'utilizzo di cristalli scintillanti operati come calorimetri criogenici a bassissima temperatura. La scelta del materiale riflette la necessità di massimizzare la sezione d'urto di interazione con le WIMP (\ref{subsec:rate_sezionedurto}) e, al contempo, di disporre di un eccellente mezzo di scintillazione; per queste ragioni, i moduli rivelatori standard di CRESST-III impiegano cristalli di tungstato di calcio ($\text{CaWO}_4$). 
 
-Quando una particella (sia essa una WIMP del segnale o una particella del fondo ambientale) attraversa il cristallo bersaglio, interagisce con la materia depositando una determinata energia $E_{\text{dep}}$. Questo rilascio di energia si propaga nel mezzo dando origine a due processi fisici distinti, che costituiscono i due canali di lettura indipendenti dell'esperimento:
+Quando una particella (sia essa una WIMP del segnale o una particella del fondo ambientale) attraversa il cristallo bersaglio, interagisce con la materia depositando una determinata energia $E_{\text{dep}}$. Questo rilascio di energia si propaga nel mezzo dando origine a due processi fisici distinti, che poi vengono misurati separatamente dai due canali di rivelazione:
 
 \begin{enumerate}
     \item \textbf{Il canale fononico (calore):} La quasi totalità dell'energia depositata ($>99\%$) viene convertita in vibrazioni reticolari del cristallo, ovvero in fononi non termici. Questi fononi si propagano nel materiale fino a raggiungere la superficie del cristallo, dove un sensore termico ne misura l'innalzamento di temperatura complessivo. Poiché la frazione di energia convertita in calore è pressoché indipendente dal tipo di particella interagente, il canale fononico fornisce una misura precisa e diretta dell'energia depositata, secondo la relazione:
     \begin{equation}
         \Delta T = \frac{E_{\text{dep}}}{C}
     \end{equation}
-    dove $C$ è la capacità termica del cristallo bersaglio. A parità di energia depositata, disporre di una capacità termica estremamente bassa permette di massimizzare l'ampiezza del segnale termico $\Delta T$. Per questa ragione i cristalli sono mantenuti a temperature criogeniche dell'ordine del millikelvin, regime in cui la capacità termica segue la legge di Debye ($C \propto T^3$) e risulta drasticamente ridotta rispetto ai valori a temperatura ambiente.
+    dove $C$ è la capacità termica del cristallo bersaglio. A parità di energia depositata, disporre di una capacità termica estremamente bassa permette di massimizzare l'ampiezza del segnale termico $\Delta T$. Per questa ragione i cristalli sono mantenuti a temperature criogeniche dell'ordine del millikelvin, regime in cui la capacità termica risulta drasticamente ridotta rispetto ai valori a temperatura ambiente.
     
     \item \textbf{Il canale fotonico (luce):} Una piccola frazione dell'energia depositata (tipicamente l'1\% o meno) viene emessa sotto forma di fotoni di scintillazione. Per raccogliere questa luce, ogni cristallo di $\text{CaWO}_4$ è accoppiato a un rivelatore di luce indipendente posto nelle immediate vicinanze. La quantità di luce prodotta è fortemente dipendente dalla densità di ionizzazione della particella incidente e, di conseguenza, dalla sua natura (rinculo elettronico dovuto a particelle $\beta/\gamma$ oppure rinculo nucleare dovuto a neutroni, WIMP o particelle $\alpha$).
 \end{enumerate}
@@ -32,9 +32,9 @@ La straordinaria sensibilità energetica dell'esperimento CRESST, capace di regi
 
 \subsubsection{Il Transition Edge Sensor (TES)}
 
-Il TES è un termometro criogenico costituito da una sottile striscia di materiale superconduttore (tipicamente tungsteno) depositato direttamente sulla superficie del cristallo bersaglio e del rivelatore di luce. Il principio di funzionamento sfrutta l'estrema dipendenza della resistenza elettrica dalla temperatura nella stretta regione di transizione tra lo stato normale e lo stato superconduttore.
+Il TES è un termometro criogenico costituito da materiale superconduttore (tipicamente tungsteno) depositato direttamente sulla superficie del cristallo e del rivelatore di luce. Il principio di funzionamento sfrutta la dipendenza della resistenza elettrica dalla temperatura nella regione di transizione tra lo stato normale e lo stato superconduttore.
 
-Mantenendo il sistema a una temperatura di lavoro $T_0$ stabilizzata esattamente al centro di questa curva di transizione, quando un fonone generato nel cristallo colpisce il TES, cede la sua energia causando un microscopico incremento di temperatura $\Delta T$. Poiché la curva della resistenza del TES è estremamente ripida in questa regione, anche un aumento di temperatura dell'ordine di pochi millikelvin provoca un cambiamento significativo della resistenza $\Delta R$ del sensore, come illustrato in Figura \ref{fig:tes_curve}.
+Mantenendo il sistema a una temperatura di lavoro $T_0$ stabilizzata esattamente al centro di questa curva di transizione, quando un fonone generato nel cristallo colpisce il TES, cede la sua energia causando un microscopico incremento di temperatura $\Delta T$. Poiché la curva della resistenza del TES è estremamente ripida in questa regione, una deposizione dell'ordine del keV provoca un aumento di temperatura dell'ordine di pochi microkelvin che risulta in un cambiamento della resistenza $\Delta R$ del sensore di qualche milliOhm, come illustrato in Figura \ref{fig:tes_curve}.
 \begin{figure}
     \centering
     \includegraphics[width=0.7\textwidth]{figures/curva_transizione.png}
@@ -42,7 +42,7 @@ Mantenendo il sistema a una temperatura di lavoro $T_0$ stabilizzata esattamente
     \label{fig:tes_curve}
 \end{figure}
 
-Un secondo TES è posizionato sopra il light detector. Non potendo usare tubi fotomoltiplicatori per la rivelazione della luce, che introdurrebbero una quantità di radioattività intrinseca inaccettabile, nelle immediate vicinanze del cristallo di $\text{CaWO}_4$ viene posizionato un disco sottilissimo di silicio (il light detector), che funge da rivelatore di luce. I fotoni di scintillazione prodotti nel cristallo vengono assorbiti dal disco, generando fononi non termici che vengono rilevati dal TES sovrastante. L'apparato sperimentale è illustrato in figura \ref{fig:detector_module}.
+Un secondo TES è posizionato sopra il light detector. Nelle immediate vicinanze del cristallo di $\text{CaWO}_4$ viene posizionato un sottile cristallo di silicio su zaffiro (il light detector), che funge da rivelatore di luce. I fotoni di scintillazione prodotti nel cristallo vengono assorbiti dal light detector, generando fononi che vengono rilevati dal TES sovrastante. L'apparato sperimentale è illustrato in figura \ref{fig:detector_module}.
 \begin{figure}
     \centering
     \includegraphics[width=0.7\textwidth]{figures/Detector_simple.png}
@@ -71,17 +71,32 @@ Lo SQUID converte questo infinitesimo flusso magnetico in una variazione di tens
 \subsection{Il sistema di refrigerazione: il criostato a diluizione}
 \label{subsec:criostato}
 
-Per mantenere i moduli rivelatori, i TES e gli SQUID alla temperatura di lavoro millikelvin ($10\text{ mK}$) richiesta dall'esperimento, è necessario un sistema di refrigerazione sofisticato, capace di abbattere la temperatura di oltre cinque ordini di grandezza rispetto all'ambiente esterno. Questo compito è affidato a un criostato a diluizione, costituito da una miscela di $^3\text{He}/^4\text{He}$, che opera attraverso una serie di stadi di raffreddamento progressivi:
+Per mantenere i moduli rivelatori, i TES e gli SQUID alla temperatura di lavoro millikelvin ($10\text{ mK}$) richiesta dall'esperimento, è necessario un sistema di refrigerazione sofisticato, capace di abbattere la temperatura di oltre cinque ordini di grandezza rispetto all'ambiente esterno. Questo compito è affidato a un criostato a diluizione, che utilizza una miscela di $^3\text{He}/^4\text{He}$, che opera attraverso una serie di stadi di raffreddamento progressivi:
 
 \begin{enumerate}
-    \item \textbf{Primo stadio (Pre-raffreddamento a $\sim 77\text{ K}$):} Il primo abbattimento termico massivo sfrutta il potere refrigerante dell'azoto liquido. Questo stadio riduce la temperatura del nucleo interno del criostato da temperatura ambiente fino a circa $77\text{ K}$ (temperatura di ebollizione dell'azoto), fungendo al contempo da prima barriera termica contro l'irraggiamento esterno.
+    \item \textbf{Primo stadio ($\sim 77\text{ K}$):} Questo stadio riduce la temperatura del corpo interno del criostato da temperatura ambiente fino a circa $77\text{ K}$, fungendo al contempo da prima schermatura termica attiva contro l'irraggiamento termico proveniente dall'esterno.
     
-    \item \textbf{Secondo stadio (Fase dell'Elio liquido a $\sim 4.2\text{ K}$ e $\sim 1\text{ K}$):} Il sistema viene successivamente raffreddato sfruttando le proprietà termiche dell'Elio liquido ($^4\text{He}$). A pressione atmosferica, l'elio bolle a $4.2\text{ K}$. Attraverso un sofisticato sistema di vuoto forzato è possibile abbassare ulteriormente la temperatura di ebollizione, spingendo questo stadio fino a circa $1\text{ K}$.
-    
-    \item \textbf{Terzo stadio (Unità a diluizione a $\sim 10\text{ mK}$):} Per scendere sotto la barriera di $1\text{ K}$ è necessario sfruttare le proprietà termodinamiche della miscela di due isotopi stabili dell'elio: l'Elio-3 ($^3\text{He}$) e l'Elio-4 ($^4\text{He}$). Quando questa miscela viene raffreddata sotto gli $0.8\text{ K}$, essa subisce una separazione spontanea in due fasi distinte: una fase "ricca" di $^3\text{He}$ (più leggera, che galleggia sopra) e una fase "diluita" (costituita quasi interamente da $^4\text{He}$ superfluido, in cui è disciolta una piccola frazione di $^3\text{He}$). 
+    \item \textbf{Bagno di Elio liquido ($\sim 4.2\text{ K}$):} Il sistema viene portato a temperature criogeniche inferiori mediante un serbatoio principale di elio liquido ($^4\text{He}$). A pressione atmosferica, l'elio bolle a circa $4.2\text{ K}$, fungendo da ulteriore schermo.
+
+    \item \textbf{Stadio della 1K-pot ($\sim 1.0\text{--}1.2\text{ K}$):} Per connettere il bagno a $4.2\text{ K}$ con l'unità di diluizione sottostante, una modesta quantità di $^4\text{He}$ liquido viene prelevata dal bagno principale e introdotta nella \textit{1K-pot}. Mantenendo questo volume ristretto sotto pompaggio continuo, la pressione di vapore saturo dell'elio si abbassa, forzandone l'evaporazione e riducendo la temperatura fino a circa $1.0\text{--}1.2\text{ K}$.
+
+    \item \textbf{\textit{Still} ($\sim 0.6\text{--}0.8\text{ K}$):} Costituisce il penultimo stadio termico prima della camera sperimentale. Si tratta di un volume a circa $0.7\text{ K}$, in cui risiede la fase diluita della miscela proveniente dalla mixing chamber.
+
+    \item \textbf{Camera di miscelamento o \textit{Mixing Chamber} ($\sim 10\text{--}15\text{ mK}$):} Rappresenta lo stadio più freddo del criostato. Al di sotto della temperatura critica di separazione ($T_c \approx 0.8\text{ K}$), la miscela $^3\text{He}/^4\text{He}$ si separa spontaneamente in due fasi fluide immiscibili: una fase ``ricca'' (costituita essenzialmente da $^3\text{He}$ puro, a densità minore, che staziona nella metà superiore) e una fase ``diluita'' (costituita da $^4\text{He}$ superfluido in cui è disciolta una concentrazione residua di $^3\text{He}$, pari a circa il $6\%$). L'$^3\text{He}$ della parte diluita viene pompato nello \textit{Still}, e altri atomi di $^3\text{He}$ vengono forzati ad attraversare la superficie di separazione di fase, passando dalla fase concentrata a quella diluita. Tale transizione è endotermica e consente al criostato di raggiungere la temperatura di $10\text{--}15\text{ mK}$.
 \end{enumerate}
 
-Tramite un sistema di pompaggio, gli atomi di $^3\text{He}$ vengono forzati ad attraversare la linea di separazione, passando dalla fase ricca alla fase diluita. Questo processo è endotermico: l'attraversamento della barriera richiede energia, che viene sottratta direttamente dall'ambiente circostante sotto forma di calore. È proprio grazie a questo continuo passaggio di fase quantistico che il criostato riesce ad assorbire il calore residuo dei rivelatori e a stabilizzare stabilmente l'intero apparato sperimentale alla temperatura criogenica di $10\text{ mK}$. Poiché questo meccanismo di raffreddamento utilizza materiali non radiopuri (serbatoi per l'azoto e l'elio, valvole e saldature etc...), il criostato deve stare al di fuori del modulo rivelatore. La temperatura criogenica è trasmessa al modulo tramite un collegamento in rame ultrapuro, che funge da ponte termico tra il criostato e il rivelatore come mostrato in Figura \ref{fig:shielding}.
+\noindent
+\textbf{Il ciclo chiuso a ricircolo di $^3\text{He}/^4\text{He}$:} 
+Al di sotto dello stadio della 1K-pot, il meccanismo di refrigerazione continuo si articola come un circuito ermeticamente sigillato, interamente isolato dal bagno esterno di $^4\text{He}$:
+\begin{enumerate}
+    \item \textbf{Estrazione ed evaporazione nello Still:} L'$^3\text{He}$ evaporato dallo \textit{Still} viene pompato all'esterno del criostato dove passa attraverso una serie di trappole ad azoto liquido con all'interno carboni attivi che rimuovono le impurità.
+    \item \textbf{Condensazione e pre-raffreddamento discendente:} Il flusso purificato rientra nel criostato: si termalizza a contatto con il bagno a $4.2\text{ K}$ e successivamente con la \textbf{1K-pot} a $\sim 1.1\text{ K}$.
+    \item \textbf{Raffreddamento verso la Mixing Chamber:} Il liquido condensato scende termalizzandosi ulteriormente prima alla temperatura dello \textit{Still} (dove si raffredda fino a $\sim 0.7\text{ K}$) e poi con il flusso uscente freddo fino a fare ingresso nella parte superiore concentrata della \textbf{Mixing Chamber}.
+    \item \textbf{Diluizione e risalita in controcorrente:} All'interno della Mixing Chamber si compie il salto endotermico di fase che assorbe il calore del sistema; la frazione di $^3\text{He}$ passata nella fase diluita imbocca il canale di prelievo sul fondo della celletta e risale verso lo \textit{Still}, dove evapora, chiudendo il ciclo.
+\end{enumerate}
+
+\noindent
+Sebbene in fisica degli eventi rari sia concettualmente possibile realizzare criostati integralmente composti da leghe ad alta radiopurezza, la soluzione progettuale adottata storicamente da CRESST prevede una netta separazione spaziale tra il refrigeratore e la camera sperimentale. I componenti commerciali del criostato (serbatoi criogenici, saldature, tubazioni e valvole) presentano una radioattività residua intrinseca incompatibile con il bassissimo fondo richiesto per la ricerca di materia oscura. Per questa ragione, il corpo centrale del criostato a diluizione è alloggiato all'esterno della schermatura di piombo e rame, mentre il raffreddamento viene convogliato verso i moduli bersaglio attraverso un lungo conduttore termico in rame ultrapuro (noto come \textit{cold finger} o dito freddo), che attraversa gli schermi e agisce da ponte termico privo di contaminanti radioattivi.
 
 \subsection{Discriminazione del fondo: il Light Yield}
 \label{sec:light_yield}
@@ -110,29 +125,27 @@ Analizzando la Figura~\ref{fig:bands}, è possibile identificare le diverse comp
     \item \textbf{Bande dei rinculi nucleari (regioni verde e blu):} I nuclei di Ossigeno (O) e Tungsteno (W) mostrano un quenching progressivamente più marcato a causa della loro maggiore massa. Una WIMP di materia oscura, interagendo prevalentemente tramite scattering coerente con i nuclei del bersaglio (con una sezione d'urto che scala come $A^2$, favorendo il Tungsteno pesante), produrrebbe eventi confinati principalmente nella banda del Tungsteno (W) o dell'Ossigeno (O).
 \end{itemize}
 
-\section{Scudi attivi e passivi}
+\section{Schermi attivi e passivi}
 \label{sec:scudi}
 
-L'apparato sperimentale di CRESST è protetto da un sistema di schermatura a più livelli, progettato per ridurre al minimo il fondo sperimentale e massimizzare la sensibilità alla materia oscura. Questo sistema si compone di due componenti principali: scudi passivi e scudi attivi.
+L'apparato sperimentale di CRESST è protetto da un sistema di schermatura a più livelli, progettato per ridurre al minimo il fondo sperimentale e massimizzare la sensibilità alla materia oscura. Questo sistema si compone di due componenti principali: schermi passivi e schermi attivi.
 
 \begin{itemize}
-    \item \textbf{scudi passivi:} materiali ad alta densità come piombo e rame, che circondano il criostato e i moduli rivelatori, assorbendo la radiazione ambientale $\gamma$ e riducendo la radioattività di fondo. Questi strati schermano efficacemente i raggi cosmici e le particelle cariche provenienti dall'ambiente esterno.
-    \item \textbf{scudi attivi:} un sistema di scintillatori viene utilizzato per rilevare i muoni cosmici residui ed eliminarli \textit{a posteriori}.
+    \item \textbf{schermi passivi:} materiali ad alta densità come piombo e rame, che circondano il criostato e i moduli rivelatori, assorbendo la radiazione ambientale $\gamma$ e riducendo la radioattività di fondo. Questi strati schermano efficacemente i raggi cosmici e le particelle cariche provenienti dall'ambiente esterno.
+    \item \textbf{schermi attivi:} un sistema di scintillatori viene utilizzato per rilevare i muoni cosmici residui ed eliminarli \textit{a posteriori}.
 \end{itemize}
 
 In particolare l'articolata successione di scudi passivi, rappresentata in Figura \ref{fig:shielding}, dall'esterno all'interno consta di:
 
-\begin{wrapfigure}{r}{0.5\textwidth}
+\begin{figure}[htbp]
     \centering
-    \vspace{-20pt} % Riduce lo spazio bianco sopra la figura per allinearla al testo
-    \includegraphics[width=0.42\textwidth]{figures/Schematic-cross-section-of-the-CRESST-setup-27-showing-the-structure-of-the-cryostat.ppm.png}
+    \includegraphics[width=0.85\textwidth]{figures/Schematic-cross-section-of-the-CRESST-setup-27-showing-the-structure-of-the-cryostat.ppm.png}
     \caption{Schema del sistema di schermatura di CRESST.}
     \label{fig:shielding}
-    \vspace{-10pt} % Riduce lo spazio bianco sotto la didascalia
-\end{wrapfigure}
+\end{figure}
 
 \begin{enumerate}
-    \item uno spesso strato di polietilene (\SI{40}{\cm}), che funge da moderatore per i neutroni ambientali. Grazie alla composizione chimica ricca di idrogeno, il polietilene rallenta i neutroni veloci, riducendo la loro energia fino a valori termici, per poi essere catturati tramite cattura radiativa.
+    \item uno spesso strato di polietilene (\SI{40}{\cm}), che funge da moderatore per i neutroni ambientali. Grazie alla composizione chimica ricca di idrogeno, il polietilene rallenta i neutroni veloci, riducendo la loro energia fino a valori termici, per poi essere catturati tramite cattura radiativa. Un secondo strato, posto vicino ai rivelatori e spesso \SI{3.5}{\mm} ferma i neutroni che vengono orginati nel rame o nel piombo a causa del passaggio di muoni.
     \item uno strato di piombo di circa \SI{20}{\cm}, che riduce la radioattività ambientale $\gamma$. Poiché il piombo è leggermente radioattivo, a causa della presenza di $^{210}\text{Pb}$, si utilizza piombo o a basso contenuto di questo isotopo, o piombo antico, che ha avuto il tempo di decadere.
     \item uno strato di rame di circa \SI{14}{\cm} estremamente radiopuro, che funge da ultima barriera e riduce al minimo il rumore di fondo.
 \end{enumerate}

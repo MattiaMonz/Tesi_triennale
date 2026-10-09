@@ -5,7 +5,7 @@ La calibrazione energetica costituisce uno dei passaggi cardine nell'analisi dei
 
 Stabilire con accuratezza questa corrispondenza è indispensabile per due ragioni fondamentali: da un lato permette di quantificare la reale soglia energetica del rivelatore ($E_{\text{th}}$) a partire dalla soglia in \text{mV} ($V_{\text{th}}$) determinata nel capitolo precedente, che definisce la sensibilità dell'apparato a rilasci microscopici, dall'altro consente di ricostruire correttamente l'energia depositata da eventuali eventi candidati di materia oscura.
 
-Operativamente, la calibrazione viene effettuata esponendo il rivelatore a sorgenti radioattive che emettono fotoni di energia nota. In questo modo è possibile tracciare una curva di risposta sperimentale ($\text{V} \rightarrow \text{keV}$). L'energia di qualsiasi evento successivo potrà quindi essere determinata univocamente interpolando l'ampiezza ricostruita lungo tale curva.
+Operativamente, la calibrazione viene effettuata esponendo il rivelatore a sorgenti radioattive che emettono fotoni o particelle di energia nota. In questo modo è possibile tracciare una curva di risposta sperimentale ($\text{V} \rightarrow \text{keV}$). L'energia di qualsiasi evento successivo potrà quindi essere determinata univocamente interpolando l'ampiezza ricostruita lungo tale curva.
 
 \section{Strategie di Calibrazione: Limiti del $^{55}\text{Fe}$ e Sorgente di $^{57}\text{Co}$}
 \label{sec:strategie_calibrazione}
@@ -20,7 +20,7 @@ Tale configurazione comporta tuttavia una complicazione fondamentale: per rimuov
     \item La nuova sequenza di raffreddamento ripristina gli stress reticolari nel cristallo e nei supporti di sostegno, i cui rilassamenti causano il cosiddetto \textit{Low Energy Excess} (LEE), un fondo a bassa energia che decade esponenzialmente nel tempo.
 \end{enumerate}
 Lasciare invece la sorgente costantemente montata all'interno introdurrebbe un fondo radioattivo irriducibile, dovuto al continuo decadimento del $^{55}\text{Fe}$, incompatibile con la ricerca di eventi rari.
-Per superare questo vincolo si rende necessario l'impiego di una sorgente $\gamma$ a più alta energia, in grado di penetrare gli schermi dall'esterno del criostato per poi essere rimossa agevolmente senza interrompere il regime criogenico. La scelta effettuata e analizzata in questa tesi è ricaduta sul $^{57}\text{Co}$, che decade principalmente tramite emissioni a $122.06\,\text{keV}$ e $136.47\,\text{keV}$. Questi fotoni possiedono una penetrazione sufficiente ad attraversare gli involucri e interagire per effetto fotoelettrico o scattering Compton nel cristallo, permettendo la rimozione immediata della sorgente prima di avviare la presa dati di fondo.
+Per superare questo vincolo si rende necessario l'impiego di una sorgente $\gamma$ a più alta energia, in grado di penetrare gli schermi dall'esterno del criostato per poi essere rimossa agevolmente senza interrompere il regime criogenico. La scelta effettuata e analizzata in questa tesi è ricaduta sul $^{57}\text{Co}$, che decade principalmente tramite emissioni a $122.06\,\text{keV}$ e $136.47\,\text{keV}$. Questi fotoni possiedono una penetrazione sufficiente ad attraversare gli schermi e interagire per effetto fotoelettrico o scattering Compton nel cristallo, permettendo la rimozione immediata della sorgente prima di avviare la presa dati di fondo.
 
 L'adozione del Cobalto solleva però un quesito cruciale: CRESST opera nella regione sub-keV per massimizzare la sensibilità a particelle di materia oscura di massa leggera, mentre il $^{57}\text{Co}$ deposita energie superiori ai $100\,\text{keV}$. È lecito assumere che la calibrazione definita a energie così elevate rimanga valida anche nella zona di interesse, ovvero a due ordini di grandezza inferiori?
 
@@ -70,7 +70,7 @@ Per identificare oggettivamente la soglia ottimale è stato studiato l'andamento
     \label{fig:Scelta_TL}
 \end{figure}
 
-Fissato il TL a $1.0\,\text{V}$, l'algoritmo di \texttt{cait} esclude tutti i campioni della finestra di acquisizione aventi ampiezza superiore a tale soglia. Sul sottoinsieme di punti rimanenti (comprendente la linea di base pre-trigger, il fronte di salita iniziale e la coda asintotica di rilassamento termico), viene eseguita una minimizzazione dei minimi quadrati per estrarre il fattore di scala ottimale $A$. Un esempio rappresentativo di evento saturo ricostruito con questo approccio è mostrato in Figura~\ref{fig:Impulso_ricostruito}.
+Fissato il TL a $1.0\,\text{V}$, l'algoritmo di \texttt{cait} esclude tutti i punti della finestra di acquisizione aventi ampiezza superiore a tale soglia, poiché presentano effetti di saturazione. Sul sottoinsieme di punti rimanenti (comprendente la linea di base pre-trigger, il fronte di salita iniziale e la coda asintotica di rilassamento termico), viene eseguita una minimizzazione dei minimi quadrati per estrarre il fattore di scala ottimale $A$. Un esempio rappresentativo di evento saturo ricostruito con questo approccio è mostrato in Figura~\ref{fig:Impulso_ricostruito}.
 
 \begin{figure}[htbp]
     \centering
@@ -88,7 +88,7 @@ Sebbene la correzione avvicini i punti all'andamento atteso, persiste una deviaz
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.9\textwidth]{figures/Ricostruzione_Testpulses.jpeg}
+    \includegraphics[width=0.75\textwidth]{figures/Ricostruzione_Testpulses.jpeg}
     \caption{Confronto tra le ampiezze stimate con l'Optimum Filter standard e quelle corrette tramite la procedura di ricostruzione su impulsi troncati di \texttt{cait}. La linea verde rappresenta l'estrapolazione lineare dei punti non saturi a bassa energia, mentre la curva arancione, eseguita tramite fit con un polinomio di secondo grado, illustra la funzione che verrà utilizzata per linearizzare la risposta del sistema.}
     \label{fig:Ricostruzione_Testpulses}
 \end{figure}
@@ -98,29 +98,29 @@ Per correggere questa non-linearità residua, conoscendo l'ampiezza ricostruita 
 \section{Estrazione dei Picchi e Curva di Calibrazione}
 \label{sec:estrazione_picchi}
 
-Completata la catena di linearizzazione strumentale, si procede all'identificazione dei picchi di calibrazione prodotti dalla sorgente di $^{57}\text{Co}$. A tale scopo sono stati selezionati tutti gli eventi saturi registrati durante il run dedicato TUM93A e ne è stata ricostruita l'ampiezza corretta secondo la procedura discussa.
+Completata la catena di linearizzazione strumentale, si procede all'identificazione dei picchi di calibrazione prodotti dalla sorgente di $^{57}\text{Co}$. A tale scopo sono stati selezionati tutti gli eventi saturi registrati sul rivelatore TUM93A e ne è stata ricostruita l'ampiezza corretta secondo la procedura discussa.
 
 L'istogramma delle ampiezze ricostruite è riportato in Figura~\ref{fig:Ricostruzione_Cobalto}. La corretta identificazione delle strutture spettrali viene effettuata mediante il confronto diretto con lo spettro energetico teorico atteso per un cristallo di tungstato di calcio ($\text{CaWO}_4$) esposto a radiazione da Cobalto-57 (Figura~\ref{fig:picchi_teorici}).
 
 \begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.8\textwidth]{figures/picchi_teorici.png}
-    \caption{Spettro energetico teorico atteso nel cristallo per esposizione a una sorgente esterna di $^{57}\text{Co}$. Si distinguono le righe primarie a $122.06\,\text{keV}$ e $136.47\,\text{keV}$, affiancate dal complesso spettro di fluorescenza e dai picchi di fuga del tungsteno compresi nell'intervallo tra $50\,\text{keV}$ e $80\,\text{keV}$.}
-    \label{fig:picchi_teorici}
+\centering
+\includegraphics[width=0.8\textwidth]{figures/picchi_teorici.png}
+\caption{Spettro energetico teorico atteso nel cristallo per esposizione a una sorgente esterna di $^{57}\text{Co}$. Si distinguono le righe primarie a $122.06\,\text{keV}$ e $136.47\,\text{keV}$, affiancate dal complesso spettro di fluorescenza e dai picchi di fuga del tungsteno compresi nell'intervallo tra $50\,\text{keV}$ e $80\,\text{keV}$.}
+\label{fig:picchi_teorici}
 \end{figure}
 
 \begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.8\textwidth]{figures/Spettro_ampiezze_ricostruite.png}
-    \caption{Spettro sperimentale delle ampiezze ricostruite e corrette per la non-linearità. Si riconoscono chiaramente le due righe principali del Cobalto a circa $19.0\,\text{V}$ e $21.7\,\text{V}$, insieme al picco a circa $9.2\,\text{V}$. Nella regione sub-volt si individua la popolazione corrispondente ai raggi X a circa $6\,\text{keV}$ emessi dal $^{55}\text{Fe}$, contestualmente presente nel criostato.}
-    \label{fig:Ricostruzione_Cobalto}
+\centering
+\includegraphics[width=0.8\textwidth]{figures/Spettro_ampiezze_ricostruite.png}
+\caption{Spettro sperimentale delle ampiezze ricostruite e corrette per la non-linearità. Si riconoscono chiaramente le due righe principali del Cobalto a circa $19.0\,\text{V}$ e $21.7\,\text{V}$, insieme al picco a circa $9.2\,\text{V}$. Nella regione sub-volt si individua la popolazione corrispondente ai raggi X a circa $6\,\text{keV}$ emessi dal $^{55}\text{Fe}$, contestualmente presente nel criostato.}
+\label{fig:Ricostruzione_Cobalto}
 \end{figure}
 
 Dal confronto tra lo spettro teorico e la distribuzione sperimentale emergono con chiarezza tre picchi ad alta energia:
 \begin{enumerate}
     \item Il doppietto terminale ad alta ampiezza, collocato a circa $19.0\,\text{V}$ e $21.7\,\text{V}$, corrisponde univocamente alle transizioni $\gamma$ principali del $^{57}\text{Co}$ a $122.06\,\text{keV}$ e $136.47\,\text{keV}$;
     \item Nella regione intermedia (tra $8\,\text{V}$ e $11\,\text{V}$), dominata dalle transizioni di fluorescenza del tungsteno, emerge una riga prominente centrata a circa $9.19\,\text{V}$, corrispondente al picco di fuga primario $122 - K_{\alpha_1}$ a $62.8\,\text{keV}$. Gli altri picchi risultano sommersi dal fondo e non è possibile compararli allo spettro atteso;
-    \item A bassissime tensioni ($< 1\,\text{V}$) si colloca infine l'emissione del $^{55}\text{Fe}$ ($5.89\,\text{keV}$ e $6.49\,\text{keV}$). Il fit di questi picchi verrà affrontato nel Paragrafo~\ref{}.
+    \item A bassissime tensioni ($< 1\,\text{V}$) si colloca infine l'emissione del $^{55}\text{Fe}$ ($5.89\,\text{keV}$ e $6.49\,\text{keV}$).
 \end{enumerate}
 
 \subsection{Fisica delle sorgenti di calibrazione ($^{57}\text{Co}$ e $^{55}\text{Fe}$)}
@@ -128,7 +128,7 @@ Dal confronto tra lo spettro teorico e la distribuzione sperimentale emergono co
 Per la calibrazione in energia del rivelatore sono state impiegate due sorgenti radioattive a cattura elettronica: $^{57}\text{Co}$ e $^{55}\text{Fe}$.
 
 \subsubsection*{Emissione del $^{57}\text{Co}$ e interazione nel rivelatore}
-Il $^{57}\text{Co}$ ($T_{1/2} \approx 271.7\text{ d}$) decade per cattura elettronica verso stati eccitati del nucleo figlio $^{57}\text{Fe}$, popolando principalmente il secondo livello a $136.47\text{ keV}$. La diseccitazione elettromagnetica nucleare avviene attraverso due rami principali:
+Il $^{57}\text{Co}$ ($T_{1/2} \approx 271.7\text{ d}$) decade per cattura elettronica verso stati eccitati del nucleo figlio $^{57}\text{Fe}$, popolando principalmente il secondo livello a $136.47\text{ keV}$. La diseccitazione nucleare avviene attraverso due processi principali:
 \begin{itemize}
     \item una transizione diretta allo stato fondamentale con emissione di un fotone $\gamma$ da $136.47\text{ keV}$ (branching ratio del $10.7\%$);
     \item una cascata a due fotoni in cui il nucleo transita prima al livello a $14.41\text{ keV}$ emettendo un fotone $\gamma$ da $122.06\text{ keV}$ ($85.6\%$), seguito dal rilascio del quanto da $14.41\text{ keV}$ verso lo stato fondamentale.
@@ -188,7 +188,7 @@ A questa componente di picco viene sommato il contributo a gradino (\textit{step
     S_k(u_k) = \frac{1}{2} A_{\text{step}, k} \, \mathrm{erfc}\left(\frac{u_k}{\sqrt{2}}\right).
 \end{equation}
 
-Il modello complessivo include inoltre un fondo residuo comune descritto da un polinomio di primo grado ($B(x) = p_0 + p_1 x$), per un totale di 11 parametri liberi:
+Il modello complessivo include inoltre un fondo residuo comune descritto da una costante ($B(x) = p_0$), per un totale di 11 parametri liberi (5 per ciascun picco e 1 per il fondo). L'espressione finale del modello di fit è quindi:
 \begin{equation}
     F(x) = B(x) + \sum_{k=1}^{2} \Big[ P_k(u_k(x)) + S_k(u_k(x)) \Big].
 \end{equation}
@@ -231,7 +231,7 @@ Come illustrato dal grafico, gli eventi associati a rinculi elettronici ($e^-/\g
     \label{fig:Fit_riga_centrale}
 \end{figure}
 
-Poiché nella regione compresa tra $50\,\text{keV}$ e $80\,\text{keV}$ coesistono molteplici transizioni minori di fluorescenza parzialmente sovrapposte che renderebbero instabile un fit su larga scala, l'analisi è stata circoscritta a una ristretta Regione di Interesse (ROI) attorno alla riga da $62.8\,\text{keV}$ (intervallo $8.0 - 8.8\,\text{V}$). In questa finestra locale, l'andamento è stato descritto tramite la combinazione di una singola funzione gaussiana e un fondo lineare:
+Poiché nella regione compresa tra $50\,\text{keV}$ e $80\,\text{keV}$ coesistono molteplici transizioni minori, l'analisi è stata circoscritta a una ristretta Regione di Interesse (ROI) attorno alla riga da $62.8\,\text{keV}$ (intervallo $8.0 - 8.8\,\text{V}$). In questa finestra locale, l'andamento è stato descritto tramite la combinazione di una singola funzione gaussiana e un fondo lineare:
 \begin{equation}
     f_{\text{ROI}}(x) = \frac{A_3}{\sqrt{2\pi}\sigma_3} \exp\left( -\frac{(x - \mu_3)^2}{2\sigma_3^2} \right) + (c_0 + c_1 x).
 \end{equation}
@@ -274,7 +274,7 @@ La procedura geometrica di linearizzazione è illustrata in Figura~\ref{fig:Rico
 
 Per determinare l'incertezza globale $\sigma_V$ da associare a ciascuna ampiezza linearizzata, sono stati considerati tre contributi indipendenti:
 \begin{enumerate}
-    \item \textbf{Incertezza statistica del fit spettrale ($\sigma_{\text{stat}}$):} l'incertezza sulla posizione del centroide estratta dal fit dei picchi (la deviazione standard del modello Crystal Ball o della gaussiana) risulta dell'ordine delle decine di millivolt ($\lesssim 0.03\,\text{V}$). A fronte dell'ampiezza complessiva dei segnali ($> 8\,\text{V}$), tale contributo è ampiamente sub-dominante e può essere considerato trascurabile;
+    \item \textbf{Incertezza statistica del fit spettrale ($\sigma_{\text{stat}}$):} l'incertezza sulla posizione del centroide estratta dal fit dei picchi (la deviazione standard del modello Crystal Ball o della gaussiana).
     
     \item \textbf{Incertezza sul riposizionamento geometrico ($\sigma_{\text{geom}}$):} la definizione della curva quadratica dei testpulse e della retta ideale a bassa energia introduce un'incertezza sistematica sulla corretta proiezione orizzontale. Poiché è complesso quantificare a priori la covarianza locale tra le due curve empiriche, è stata assunta come incertezza una frazione conservativa pari a un quarto della distanza orizzontale percorsa dal punto tra la parabola e la retta:
     \begin{equation}
@@ -305,9 +305,9 @@ Per determinare l'incertezza globale $\sigma_V$ da associare a ciascuna ampiezza
 
 Sommando in quadratura la componente geometrica e quella sistematica del Truncation Limit:
 \begin{equation}
-    \sigma_V = \sqrt{\sigma_{\text{geom}}^2 + \sigma_{\text{TL}}^2},
+    \sigma_V = \sqrt{\sigma_{\text{stat}}^2 + \sigma_{\text{geom}}^2 + \sigma_{\text{TL}}^2},
 \end{equation}
-si ottengono le incertezze complessive finali: $\sigma_V = 0.21\,\text{V}$ per la riga a $62.8\,\text{keV}$, $\sigma_V = 0.61\,\text{V}$ per il picco a $122.06\,\text{keV}$ e $\sigma_V = 0.75\,\text{V}$ per il picco a $136.47\,\text{keV}$.
+si ottengono le incertezze complessive finali: $\sigma_V = 0.25\,\text{V}$ per la riga a $62.8\,\text{keV}$, $\sigma_V = 0.65\,\text{V}$ per il picco a $122.06\,\text{keV}$ e $\sigma_V = 0.80\,\text{V}$ per il picco a $136.47\,\text{keV}$.
 
 In Tabella~\ref{tab:picchi_calibrazione} sono riassunti tutti i parametri spettrali utilizzati per la calibrazione, comprendenti sia le righe del Cobalto con i rispettivi errori complessivi, sia le righe a bassa energia del $^{55}\text{Fe}$.
 
@@ -322,9 +322,9 @@ In Tabella~\ref{tab:picchi_calibrazione} sono riassunti tutti i parametri spettr
         \hline
         $^{55}\text{Fe}$ ($K_\alpha$, $2p \to 1s$) & $5.89$ & -- & $0.862 \pm 0.001$ \\
         $^{55}\text{Fe}$ ($K_\beta$, $3p \to 1s$)  & $6.49$ & -- & $0.941 \pm 0.002$ \\
-        $^{57}\text{Co}$ ($122 - K_{\alpha_1}$ escape) & $62.80$ & $8.46 \pm 0.03$ & $9.19 \pm 0.21$ \\
-        $^{57}\text{Co}$ ($\gamma_1$, fotopicco) & $122.06$ & $16.80 \pm 0.02$ & $19.01 \pm 0.61$ \\
-        $^{57}\text{Co}$ ($\gamma_2$, fotopicco) & $136.47$ & $18.96 \pm 0.03$ & $21.67 \pm 0.75$ \\
+        $^{57}\text{Co}$ ($122 - K_{\alpha_1}$ escape) & $62.80$ & $8.45 \pm 0.13$ & $9.19 \pm 0.25$ \\
+        $^{57}\text{Co}$ ($\gamma_1$, fotopicco) & $122.06$ & $16.80 \pm 0.21$ & $19.01 \pm 0.65$ \\
+        $^{57}\text{Co}$ ($\gamma_2$, fotopicco) & $136.47$ & $18.96 \pm 0.23$ & $21.67 \pm 0.80$ \\
         \hline\hline
     \end{tabular}
     \caption{Riepilogo delle righe di calibrazione sperimentali. Le righe del $^{55}\text{Fe}$ risiedono originariamente nel regime di risposta lineare, mentre per i picchi saturi del $^{57}\text{Co}$ le ampiezze linearizzate includono l'errore sistematico combinato $\sigma_V$.}
@@ -363,15 +363,16 @@ si attesta al $4.8\%$ per la riga da $5.89\,\text{keV}$ e al $4.6\%$ per la riga
 \section{Calibrazione a Bassa Soglia Mediante Rinculi Nucleari}
 \label{sec:calibrazione_rinculi_nucleari}
 
-Nonostante l'eccellente coerenza riscontrata tra le righe del $^{57}\text{Co}$ e del $^{55}\text{Fe}$, la calibrazione energetica convenzionale presenta un limite intrinseco per la fisica della materia oscura: essa si basa interamente su \textit{rinculi elettronici} ($e^-/\gamma$), mentre l'interazione attesa per particelle massive WIMP (o per scattering coerente neutrino-nucleo, CE$\nu$NS) avviene mediante \textit{rinculi nucleari}. Nella regione sub-keV, una frazione dell'energia cinetica ceduta a un nucleo bersaglio viene dissipata nella formazione di difetti reticolari stabili (dislocazioni ed effetto Frenkel), sottraendo energia alla cascata fononica termica e potendo introdurre una discrepanza sistematica nella scala energetica tra elettroni e nuclei.
+Nonostante l'eccellente coerenza riscontrata tra le righe del $^{57}\text{Co}$ e del $^{55}\text{Fe}$, la calibrazione energetica convenzionale presenta un limite intrinseco per la fisica della materia oscura: essa si basa interamente su \textit{rinculi elettronici} ($e^-/\gamma$), mentre l'interazione attesa per particelle massive WIMP avviene mediante \textit{rinculi nucleari}. 
+A differenza di un rinculo elettronico, un rinculo nucleare tramette una frazione dell'energia cinetica ceduta al reticolo cristallino in difetti stabili. Tuttavia, come evidenziato in \cite{Angloher:2023_neutron_peak}, con le attuali incertezze non possiamo confermare se questa differenza esiste o meno, tuttavia se esiste è inferiore al 5\%.
 
 Per ancorare direttamente la risposta del rivelatore nella regione di bassa soglia, la collaborazione CRESST ha recentemente validato un metodo di calibrazione basato sulla cattura radiativa di neutroni termici \cite{Angloher:2023_neutron_peak}. 
 
-Nel setup sperimentale ai Laboratori Nazionali del Gran Sasso, il rivelatore è stato esposto a una sorgente neutronica di Americio-Berillio ($^{241}\text{AmBe}$). I neutroni veloci emessi vengono moderati dalle schermature di polietilene, piombo e rame, raggiungendo il cristallo di $\text{CaWO}_4$ con energie termiche ($E_n \lesssim 25\,\text{meV}$). Tra i vari isotopi presenti, il $^{182}\text{W}$ presenta una sezione d'urto di cattura termica rilevante ($\sigma \approx 20.3\,\text{b}$) con un canale di diseccitazione a singolo fotone $\gamma$ avente un branching ratio del $13.9\%$ verso lo stato fondamentale del $^{183}\text{W}$ ($Q = 6190.7\,\text{keV}$):
+Nel setup sperimentale ai Laboratori Nazionali del Gran Sasso, il rivelatore è stato esposto a una sorgente neutronica di Americio-Berillio. I neutroni veloci emessi vengono moderati dalle schermature di polietilene, piombo e rame, raggiungendo il cristallo di $\text{CaWO}_4$ con energie termiche ($E_n \lesssim 25\,\text{meV}$). Tra i vari isotopi presenti, il $^{182}\text{W}$ presenta una sezione d'urto di cattura termica rilevante ($\sigma \approx 20.3\,\text{b}$), per poi diseccitarsi tramite emissione di un fotone $\gamma$ verso lo stato fondamentale del $^{183}\text{W}$ ($Q = 6190.7\,\text{keV}$):
 \begin{equation}
     n + \,^{182}\text{W} \;\longrightarrow\; ^{183}\text{W}^* \;\longrightarrow\; ^{183}\text{W} + \gamma.
 \end{equation}
-A causa dell'elevata energia ($> 6\,\text{MeV}$), il fotone $\gamma$ attraversa il cristallo senza interagire. Per conservazione del momento, il nucleo figlio di $^{183}\text{W}$ subisce un rinculo monoenergetico rigorosamente determinato:
+A causa dell'elevata energia, il fotone $\gamma$ attraversa il cristallo senza interagire. Per conservazione del momento, il nucleo figlio di $^{183}\text{W}$ subisce un rinculo monoenergetico determinato da :
 \begin{equation}
     E_R = \frac{E_\gamma^2}{2 M c^2} = 112.4\,\text{eV}.
 \end{equation}
@@ -395,7 +396,7 @@ I parametri ottimali risultanti dal fit globale (riportato in Figura~\ref{fig:ri
     \label{fig:riga112eV}
 \end{figure}
 
-Valutando la funzione invertita all'energia del rinculo nucleare ($E = 112.4\,\text{eV} = 0.1124\,\text{keV}$), si ricava la tensione attesa sul sensore:
+Valutando la funzione invertita all'energia del rinculo nucleare ($E = 112.4\,\text{eV}$), si ricava la tensione attesa sul sensore:
 \begin{equation}
     V(112.4\,\text{eV}) = 16.47 \pm 0.07\,\text{mV}.
 \end{equation}

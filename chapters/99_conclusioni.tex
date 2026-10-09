@@ -1,0 +1,59 @@
+\chapter{Conclusioni e Prospettive}
+\label{chap:conclusioni}
+
+L'attività di analisi sviluppata in questo lavoro di tesi si è articolata attorno a due obiettivi cardine per il funzionamento del calorimetro criogenico di CRESST-III: la caratterizzazione del rumore sperimentale volta all'ottimizzazione della soglia di trigger e la formulazione di una procedura di calibrazione energetica accurata ed estendibile fino alla finestra sub-keV.
+
+\section*{Caratterizzazione del Rumore e Ottimizzazione del Trigger}
+
+Nella prima fase del lavoro, la risposta del rivelatore è stata analizzata nel dominio delle frequenze mediante il formalismo dell'Optimum Filter (OF, Paragrafo~\ref{sec:teoria_OF}). Conoscendo la densità spettrale di potenza del rumore di fondo e la forma d'onda caratteristica del segnale (\textit{template}), l'algoritmo di OF ha consentito di massimizzare il rapporto segnale-rumore.
+
+L'applicazione del filtro alle tracce di rumore filtrate con OF ha permesso di determinare tre livelli di soglia valutati sul numero di trigger spuri accettati:
+\begin{equation}
+    V_{\text{th}}^{(10\%)} = 4.453\,\text{mV}, \quad 
+    V_{\text{th}}^{(1\%)} = 5.133\,\text{mV}, \quad 
+    V_{\text{th}}^{(0.1\%)} = 6.026\,\text{mV}.
+\end{equation}
+Per valutare quantitativamente l'efficienza di rivelazione associata a tali valori, è stata eseguita una simulazione sovrapponendo il template standard di segnale, ad ampiezze discrete crescenti, a campioni di rumore reale. Come illustrato dalla curva di efficienza di Figura~\ref{fig:Efficienza_trigger}, la soglia al $V_{\text{th}}^{(1\%)}$ si è rivelata il miglior compromesso operativo, garantendo una buona combinazione tra discriminazione del rumore e una rapida transizione alla piena efficienza di trigger. Convertendo questa soglia di tensione mediante la curva di calibrazione globale del calorimetro, è stato stimato un valore di soglia energetica pari a circa $37\,\text{eV}$.
+
+\section*{Calibrazione Energetica e Risposta Non Lineare}
+
+La seconda parte dell'analisi ha affrontato la ricostruzione dello spettro e la calibrazione del rivelatore, sfruttando due sorgenti radioattive con caratteristiche complementari: una sorgente interna a bassa energia di $^{55}\text{Fe}$, posta in prossimità del cristallo, e una sorgente esterna di $^{57}\text{Co}$, che sfrutta l'elevata capacità di penetrazione dei raggi $\gamma$ per penetrare attraverso gli schermi.
+
+Le emissioni caratteristiche del $^{55}\text{Fe}$ ($5.89\,\text{keV}$ e $6.49\,\text{keV}$), ricostruite tramite Optimum Filter, risiedono interamente nella regione di risposta lineare del TES. Il fit dello spettro con una funzione a doppia gaussiana su fondo continuo ha permesso di isolare i picchi, localizzati a:
+\begin{itemize}
+    \item Riga $K_\alpha$ ($5.89\text{ keV}$): $\mu_1 = 0.861 \pm 0.001\,\text{V}, \quad \sigma_1 = 0.013 \pm 0.001\,\text{V}$;
+    \item Riga $K_\beta$ ($6.49\text{ keV}$): $\mu_2 = 0.943 \pm 0.002\,\text{V}, \quad \sigma_2 = 0.013 \pm 0.002\,\text{V}$.
+\end{itemize}
+
+Al contrario, gli eventi indotti dal $^{57}\text{Co}$ rilasciano energie significativamente più elevate ($> 60\,\text{keV}$), spingendo il TES al di fuori della regione lineare e provocando la saturazione del segnale. Per recuperare l'ampiezza non distorta degli impulsi saturi, è stato impiegato il metodo di fit di \texttt{cait}, con $\textit{truncation limit} = 1.0\,\text{V}$. Lo spettro delle ampiezze ricostruite (Figura~\ref{fig:Ricostruzione_Cobalto}) è stato fittato tramite modello Crystal Ball, ottendendo i seguenti parametri per i picchi:
+\begin{itemize}
+    \item Picco $\gamma_1$ ($122.06\text{ keV}$): $\mu_1 = 16.80 \pm 0.02\,\text{V}, \quad \sigma_1 = 0.21 \pm 0.02\,\text{V}$;
+    \item Picco $\gamma_2$ ($136.47\text{ keV}$): $\mu_2 = 18.96 \pm 0.03\,\text{V}, \quad \sigma_2 = 0.23 \pm 0.02\,\text{V}$;
+\end{itemize}
+e il picco di fuga del tungsteno, localizzato a:
+\begin{itemize}
+    \item Escape peak $K_{\alpha_1}$ ($62.80\text{ keV}$): $\mu_3 = 8.45 \pm 0.03\,\text{V}, \quad \sigma_3 = 0.13 \pm 0.02\,\text{V}$.
+\end{itemize}
+
+A causa della progressiva perdita di proporzionalità introdotta dall'algoritmo su impulsi fortemente troncati, i valori stimati sono stati successivamente linearizzati proiettandoli sulla curva di risposta dei testpulse (Figura~\ref{fig:Ricostruzione_picchi_cobalto}).
+
+\section*{Validazione della Calibrazione e Prospettive a Bassa Soglia}
+
+Costruendo una curva di calibrazione preliminare quadratica vincolata all'origine basata unicamente sui tre punti ad alta energia del $^{57}\text{Co}$, la funzione è stata estrapolata a ritroso di oltre un ordine di grandezza in tensione per verificare la coerenza con i picchi del $^{55}\text{Fe}$. Le posizioni in ampiezza previste dal modello:
+\begin{align}
+    E = 5.89\,\text{keV} \quad &\Longrightarrow \quad V_{\text{att}} = 0.82 \pm 0.03\,\text{V}, \\
+    E = 6.49\,\text{keV} \quad &\Longrightarrow \quad V_{\text{att}} = 0.90 \pm 0.03\,\text{V},
+\end{align}
+risultano in ottimo accordo con i valori misurati sperimentalmente ($0.861\,\text{V}$ e $0.943\,\text{V}$), evidenziando una discrepanza relativa contenuta entro il $4.8\%$ e il $4.6\%$. Tale accordo convalida sperimentalmente l'affidabilità della procedura di linearizzazione adottata e dimostra come sia possibile ricorrere a calibrazioni con sorgenti $\gamma$ ad alta energia esterne senza compromettere la precisione della scala energetica a basse energie.
+
+Infine, incorporando congiuntamente tutte e cinque le righe sperimentali in un fit polinomiale globale di terzo grado vincolato a zero (Figura~\ref{fig:riga112eV}), è stata estesa la calibrazione verso la soglia sperimentale. La curva ha permesso di stimare la tensione attesa per il picco di rinculo nucleare puro a $112.4\,\text{eV}$ (originato dalla cattura di neutroni termici su $^{182}\text{W}$), ottenendo:
+\begin{equation}
+    V(112.4\,\text{eV}) = 16.47 \pm 0.07\,\text{mV}.
+\end{equation}
+
+In conclusione, la procedura sviluppata in questa tesi fornisce un protocollo robusto ed efficiente per la ricostruzione energetica di qualsiasi evento registrato dal rivelatore:
+\begin{itemize}
+    \item per impulsi con ampiezza inferiore a circa $1\,\text{V}$ (regime lineare, tipico dei candidati di materia oscura e delle calibrazioni X), l'ampiezza viene estratta tramite Optimum Filter e convertita direttamente in energia lungo la regione proporzionale della curva di calibrazione;
+    \item per impulsi energetici superiori a $1\,\text{V}$ (regime saturo), l'ampiezza viene ricostruita tramite il fit a template troncato con \texttt{cait}, linearizzata rispetto alla risposta dei testpulse e quindi convertita nell'energia corrispondente.
+\end{itemize}
+Questo approccio garantisce una trattazione rigorosa delle non linearità termiche del sensore e costituisce uno strumento fondamentale per l'analisi dei dati fisici di CRESST-III.

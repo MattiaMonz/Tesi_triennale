@@ -16,7 +16,7 @@ Nell'esperimento CRESST i segnali vengono acquisiti in modalità continua a una 
 Per monitorare la stabilità della risposta termica del rivelatore e verificarne costantemente il punto di lavoro lungo la transizione superconduttrice del TES (\textit{Transition Edge Sensor}), vengono iniettati periodicamente impulsi di calore artificiali per mezzo di una resistenza (\textit{heater}) localizzata molto vicina al cristallo:
 \begin{itemize}
     \item \textbf{TestPulses:} impulsi di calore ad ampiezza variabile programmata (tra $0.1\,\text{V}$ a $10\,\text{V}$ al generatore), impiegati per campionare linearità, guadagno e risoluzione energetica dell'apparato (Figura~\ref{fig:PulsesComparison}b);
-    \item \textbf{ControlPulses:} impulsi ad ampiezza fissa ed elevata ($20\,\text{V}$), progettati per portare il film di tungsteno oltre la transizione e saturare la risposta per correggere eventuali scostamenti dal punto di lavoro ideale (Figura~\ref{fig:PulsesComparison}a).
+    \item \textbf{ControlPulses:} impulsi ad ampiezza fissa ed elevata ($10\,\text{V}$), progettati per portare il film di tungsteno oltre la transizione e saturare la risposta per correggere eventuali scostamenti dal punto di lavoro ideale (Figura~\ref{fig:PulsesComparison}a).
 \end{itemize}
 
 \begin{figure}[htbp]
@@ -24,7 +24,7 @@ Per monitorare la stabilità della risposta termica del rivelatore e verificarne
     \begin{minipage}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\linewidth]{figures/ControlPulse.png}
-        \caption*{(a) Impulso a 20\,V (ControlPulse).}
+        \caption*{(a) Impulso a 10\,V (ControlPulse).}
         \label{fig:ControlPulse}
     \end{minipage}
     \hfill
@@ -35,7 +35,7 @@ Per monitorare la stabilità della risposta termica del rivelatore e verificarne
         \label{fig:TestPulse}
     \end{minipage}
     \vspace{0.8em}
-    \caption{Risposta del sensore agli impulsi iniettati tramite heater: (a) singolo \textit{ControlPulse} saturo a $20\,\text{V}$ e (b) serie di dodici \textit{TestPulses} ad ampiezza variabile campionati lungo l'intervallo di 65536 campioni.}
+    \caption{Risposta del sensore agli impulsi iniettati tramite heater: (a) singolo \textit{ControlPulse} saturo a $10\,\text{V}$ e (b) serie di dodici \textit{TestPulses} ad ampiezza variabile campionati lungo l'intervallo di 65536 campioni.}
     \label{fig:PulsesComparison}
 \end{figure}
 
@@ -44,7 +44,7 @@ Ogni evento isolato in fase di analisi corrisponde a una finestra temporale di $
 Dalle tracce campionate vengono estratti diversi parametri operativi, riassunti nel seguente elenco e illustrati in Figura~\ref{fig:Parametri_particella}:
 \begin{itemize}
     \item \textbf{Baseline Offset:} valore medio della tensione nella finestra pre-trigger, sottratto alla traccia per eliminare la componente continua (DC);
-    \item \textbf{Baseline Slope:} pendenza lineare della baseline pre-trigger (unità di misura??);
+    \item \textbf{Baseline Slope:} pendenza lineare della baseline pre-trigger;
     \item \textbf{Baseline RMS:} deviazione standard della tensione nella regione prima dell'evento;
     \item \textbf{Baseline Difference:} differenza tra la media della tensione prima dell'impulso e quella a fine finestra;
     \item \textbf{Rise Time (RT):} tempo impiegato dal fronte di salita per arrivare al $90\%$ dell'altezza massima;
@@ -121,7 +121,7 @@ Durante il funzionamento continuo, la presenza di derive termiche provocano vari
 Per selezionare esclusivamente tracce di rumore stazionarie, il campione iniziale viene depurato applicando una serie di criteri di selezione:
 \begin{itemize}
     \item \textbf{Pulse Height $< 4\,\text{mV}$:} esclude piccoli impulsi fisici o transienti spuri sfuggiti al trigger;
-    \item \textbf{Baseline Difference $< 0.5\,\text{mV}$:} rigetta eventi che contengono code termiche o fluttuazioni a gradino;
+    \item \textbf{$-0.5\, \text{mV} <$ Baseline Difference $< 0.5\,\text{mV}$:} rigetta eventi che contengono code termiche o fluttuazioni a gradino;
     \item \textbf{Fit polinomiale di terzo grado:} la traccia viene modellata tramite fit cubico minimizzando l'RMS e si conservano solo gli eventi con valore di RMS compreso tra il $10^\circ$ e il $90^\circ$ percentile della distribuzione, eliminando andamenti non lineari anomali.
 \end{itemize}
 
@@ -196,7 +196,7 @@ Mediando $337$ eventi di $^{55}\text{Fe}$ sopravvissuti ai tagli e normalizzando
 
 La risposta termica del rivelatore a un impulso di calore iniettato nell'heater non è del tutto identica a quella generata da una particella che colpisce il volume del cristallo. 
 
-Come illustrato nel confronto di Figura~\ref{fig:confronto_templates}, il TestPulse mostra un fronte di salita più dolce e un tempo di decadimento leggermente diverso rispetto all'impulso da particella. Per calibrare accuratamente i TestPulses senza introdurre disallineamenti di forma, è indispensabile costruire un template dedicato anche per essi.
+Come illustrato nel confronto di Figura~\ref{fig:confronto_templates}, il TestPulse mostra un fronte di salita più lento e un tempo di decadimento leggermente diverso rispetto all'impulso da particella. Per calibrare accuratamente i TestPulses senza introdurre disallineamenti di forma, è indispensabile costruire un template dedicato anche per essi.
 
 \begin{figure}[htbp]
     \centering
@@ -242,7 +242,7 @@ Un esempio di applicazione su un impulso di piccola ampiezza ($V_{\text{inj}} = 
 \label{sec:trigger_noise}
 % ==============================================================================
 
-Uno degli aspetti cardine nell'analisi dei dati di un esperimento per la ricerca di materia oscura è la definizione della soglia di trigger software. In CRESST, dove l'obiettivo primario è massimizzare la sensibilità a particelle leggere nella regione sub-keV, la soglia deve essere impostata al valore più basso possibile compatibilmente con il rumore di fondo. Una scelta inadeguata comporta due rischi contrapposti:
+Uno degli aspetti cardine nell'analisi dei dati di un esperimento per la ricerca di materia oscura è la definizione della soglia di trigger software. In CRESST, dove l’obiettivo primario è massimizzare la sensibilità a particelle di materia oscura a bassa massa (sub-GeV) rivelando energie di rinculo nella regione sub-keV, la soglia di trigger deve essere impostata al valore più basso possibile compatibilmente con il rumore di fondo. Una scelta inadeguata comporta due rischi contrapposti:
 \begin{itemize}
     \item una soglia eccessivamente bassa determina un tasso insostenibile di trigger spuri, che contaminano l'insieme di dati scientifici con fluttuazioni stocastiche di baseline;
     \item una soglia troppo conservativa azzera il rumore ma innalza la soglia energetica effettiva ($E_{\text{th}}$), tagliando fuori la frazione più rilevante dello spazio delle fasi atteso per i candidati di materia oscura.
